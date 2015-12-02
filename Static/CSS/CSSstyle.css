@@ -9,11 +9,10 @@ a {color: #963;
 
 
 body {
-	background:  url("../Images/lace.jpg") no-repeat center center fixed;
+	background:  url("../image/lace.jpg") no-repeat center center fixed;
 	width: 100%;
     height: 100%;
 	background-size: cover;
-	
  }	
 
 
@@ -26,8 +25,9 @@ h1 {
 
 h2,h3 {
 	font:  normal 14px Arial padding-top: 6px; 
-	
+	color:#808080;
 }
+
 
 /* Tool bar*/
 .container {
@@ -40,7 +40,7 @@ h2,h3 {
 
 /* Tool bar*/
 .container1 {
-	background:  url("../Images/Contact.jpg") repeat-y;
+	background:  url("../image/Contact.jpg") repeat-y;
 	font-size: 1.0em;
 	margin: 0 auto;
 	padding: 0 0px 0px;
@@ -51,11 +51,13 @@ h2,h3 {
 
 /* title */
 .header {
-	font-size: 50px;
-	height: 150px;
+	background:  url("../image/logo.png");
+    background-position: center; 
+	background-repeat: no-repeat;
 	margin: 0 auto;
 	padding: 10px 10px 5px;
 	width: 750px;
+	height: 150px;
 	
 }
 /* main */
@@ -65,9 +67,10 @@ h2,h3 {
 }
 /* Tool bar border*/
 .navigation {	
-	/*border: 1px solid #ffffff;*/
 	height: 41px;
-	text-align: center
+	text-align: center;
+	color: #660000;
+	
 }
 /* Navigation in Tool bar */
 .navigation a {
@@ -76,11 +79,11 @@ h2,h3 {
 	display: block;
 	float: right;
 	font: bold 1.1em sans-serif;
-	line-height: 41px;
+	line-height: 50px;
 	padding: 0 20px;
 	
 }
-.navigation a:hover {background: #319EDD; color: #ffffff; text-decoration: underline}
+.navigation a:hover {background: #ffffff; color: #000000; text-decoration: underline}
 
 
 
@@ -114,6 +117,7 @@ h2,h3 {
   background-image: -o-linear-gradient(top, #f7f9fa, #DAA520);
   background-image: linear-gradient(to bottom, #f7f9fa, #DAA520);
   text-decoration: none;
+  border: outset 2px #963;
 }
 
 
@@ -124,7 +128,7 @@ h2,h3 {
    font:  normal 12px Arial;   
    font-weight: bold;
    font-style: Arial;
-   border: outset 4px #FFFFFF;
+   border: outset 3px #963;
    border-radius: 9px;
    font-size: 14px;
    box-shadow: 0px 1px 2px 0px #9C9C9C;
