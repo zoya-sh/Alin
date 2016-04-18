@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Alin-Makeup-Artist</title>
+    
+    <!-- faveicon start -->
+    <link rel="icon" type="image/png" href="images/faveicon.png" sizes="16x16">
+    <!-- faveicon close// -->
+    
+    <!-- style start -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/mainslider.css" />
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="css/loader.css" rel="stylesheet" type="text/css" />
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <!-- style close// -->
+    
+    <!-- main-script -->
+	<script src="js/jquery.min.js"></script>
+    <!-- main-script// -->
+    
+    <!-- responsive menu -->
+    <script src="js/menuscript.js "></script>
+    <!-- responsive menu// -->
+</head>
+
+<body>
+
+<div class="maincontainer">
+	<div class="header"><!-- header start -->
+		<div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /></a></div>
+        <div id='menu'><!-- menu start -->
+            <ul>
+               <li class=''><a href='index.html' class="">דף הבית</a></li>
+               <li class=''><a href='#' class="">גלריה</a>
+               	<ul>
+                	<li><a href="makeup-gallery.html">איפור</a></li>
+                    <li><a href="nails-gallery.html">ציפורנים</a></li>
+                </ul>
+               </li>
+               <li class=''><a href='#' class="">סדנאות</a>
+               	<ul>
+                	<li><a href="personal-training.html">סדנא אישית</a></li>
+                    <li><a href="group-training.html">סדנא קבוצתית</a></li>
+                    <li><a href="evenings-activity.html">ערבי פעילויות</a></li>
+                </ul>
+               </li>
+               <li class=''><a href='#' class="menuactive">טיפים</a>
+               	<ul>
+                	<li><a href="makeup-tips.html">עולם האיפור</a></li>
+                    <li><a href="nails-tips.html">עולם הציפורנים</a></li>
+                    <li><a href="care-tips.html">עולם הטיפוח</a></li>
+                </ul>
+               </li>
+               <li class=''><a href='do-it-by-yourself.html' class="">עשה זאת בעצמך</a></li>
+               <li class=''><a href='makeup-artist-profile.html' class="">פרופיל</a>
+               	<ul>
+                	<li><a href="login.html">התחבר</a></li>
+                    <li><a href="join-us.html">הצטרף</a></li>
+                </ul>
+               </li>
+               <li class=''><a href='contact-us.html' class="">צור קשר</a></li>
+            </ul>
+        </div><!-- menu close// -->
+	</div><!-- header close -->
+    <div class="mainslider"><!-- mainslider start -->
+        <div class="banner">
+            <div class="container">
+                <!-- img slider -->
+                <div class="img-slider">
+                        <!-- start slider script -->
+                    <script src="js/main-slider/responsiveslides.min.js"></script>
+                     <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                          // Slideshow 4
+                          $("#slider4").responsiveSlides({
+                            auto: true,
+                            pager: true,
+                            nav:true,
+                            speed: 1000,
+                            namespace: "callbacks",
+                            before: function () {
+                              $('.events').append("<li>before event fired.</li>");
+                            },
+                            after: function () {
+                              $('.events').append("<li>after event fired.</li>");
+                            }
+                          });
+                    
+                        });
+                      </script>
+                    <!-- End slider script // -->
+                    <!-- Slideshow 4 -->
+                    <div  id="top" class="callbacks_container">
+                      <ul class="rslides" id="slider4">
+                        <li>
+                          <img class="img-responsive" src="images/slider_pic1.jpg" alt="">
+                          <div class="slider-caption"><!-- slider-caption start --></div><!-- slider-caption close// -->
+                        </li>
+                        <li>
+                          <img class="img-responsive" src="images/slider_pic2.jpg" alt="">
+                          <div class="slider-caption"><!-- slider-caption start --></div><!-- slider-caption close// -->
+                        </li>
+                        <li>
+                          <img class="img-responsive" src="images/slider_pic3.jpg" alt="">
+                          <div class="slider-caption"><!-- slider-caption start --></div><!-- slider-caption close// -->
+                        </li>
+                        <li>
+                          <img class="img-responsive" src="images/slider_pic4.jpg" alt="">
+                          <div class="slider-caption"><!-- slider-caption start --></div><!-- slider-caption close// -->
+                        </li>
+                        <li>
+                          <img class="img-responsive" src="images/slider_pic5.jpg" alt="">
+                          <div class="slider-caption"><!-- slider-caption start --></div><!-- slider-caption close// -->
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>   
+            </div>
+        </div>
+    </div><!-- mainslider close -->
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
