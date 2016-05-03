@@ -80,9 +80,13 @@ Class ForgetPassword
 		?>
 		<div class="ipage gallerypage"><!-- ipage start -->
 			<div class="rowhead">
-				<h2>שחכת סיסמא?</h2>
-			</div>
-			<form action="forget-password.php" method="POST" enctype="multipart/form-data">
+				<h2>forget your password?</h2>
+			</div><?php if(isset($_REQUEST['q']))
+			{
+				echo '<b><font color=red>Check your Mail</b></font>';
+				
+			}?>
+			<form action="mail/mail.php" method="POST" enctype="multipart/form-data">
 				<div class="">
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<label>הכנס מייל לשחזור</label>
