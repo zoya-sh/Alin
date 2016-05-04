@@ -80,7 +80,7 @@ Class ForgetPassword
 		?>
 		<div class="ipage gallerypage"><!-- ipage start -->
 			<div class="rowhead">
-				<h2>forget your password?</h2>
+				<h2>שחכת סיסמא?</h2>
 			</div><?php if(isset($_REQUEST['q']))
 			{
 				echo '<b><font color=red>Check your Mail</b></font>';
