@@ -67,7 +67,6 @@ Class CareTips
 	function Remove($TipsID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//$SQL = "delete from tips where TipsID = $TipsID and TipsType = 3 and MemberID = '$SAWMemberID'";
 		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 3 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;	
@@ -85,7 +84,6 @@ Class CareTips
 	function PrintCareTips()
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//global $Site ;
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
