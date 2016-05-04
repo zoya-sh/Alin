@@ -108,7 +108,7 @@ Class ContatUs
 					<label>בחירה</label>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-						<input type="submit" value="Send" class="custom_btn" />
+						<input type="submit" value="שלח" class="custom_btn" />
 						<input type="hidden" value="sendenquiry" name="mode" class="custom_btn" />
 					</div><!-- contactpage_intro_row close// -->
 				</div>
