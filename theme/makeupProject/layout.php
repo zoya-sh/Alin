@@ -27,9 +27,24 @@ global $Site;
     <!-- responsive menu -->
     <script src="<?php echo $Site->ThemePath ?>js/menuscript.js "></script>
     <!-- responsive menu// -->
-
-	
-	
+<?php	
+}
+function CloseHeader(){
+?>	
+</head>
+<?php	
+}
+function StartBody(){
+?>
+<body>
+<div class="maincontainer">
+<?php
+}
+function PrintTopHeader(){
+global $Site;
+global $SAWMemberID;
+$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+?>		
 <div class="header"><!-- header start -->
 		<div class="logo"><a href="index.php"><img src="<?php echo $Site->ThemePath ?>images/logo.png" alt="" /></a></div>
         <div id='menu'><!-- menu start -->
@@ -135,3 +150,28 @@ function CLoseBody(){
 ?>	
 </div>
 </body>
+<?php	
+}
+function watermark_text($oldimage_name, $new_image_name){
+    global $font_path, $font_size, $water_mark_text_1, $water_mark_text_2;
+	$image_path = "";
+	$font_path = "";
+	$font_size = 15;  // in pixcels
+	//$water_mark_text_1 = "9";
+	$water_mark_text_2 = "";
+    list($owidth,$oheight) = getimagesize($oldimage_name);
+    $width = $owidth ;    
+    $height = $oheight ;  
+    $image = imagecreatetruecolor($width, $height);
+    $image_src = imagecreatefromjpeg($oldimage_name);
+    imagecopyresampled($image, $image_src, 0, 0, 0, 0, $width, $height, $owidth, $oheight);
+   // $black = imagecolorallocate($image, 0, 0, 0);
+    $blue = imagecolorallocate($image, 79, 166, 185);
+   // imagettftext($image, $font_size, 0, 30, 190, $black, $font_path, $water_mark_text_1);
+    imagettftext($image, $font_size, 0, 68, 190, $blue, $font_path, $water_mark_text_2);
+    imagejpeg($image, $new_image_name, 100);
+    imagedestroy($image);
+    unlink($oldimage_name);
+    return true;
+}
+?>
