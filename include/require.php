@@ -1,13 +1,9 @@
 <?php
 require_once("include/config.php");
-require_once("admin/include/Sajax.php");
 require_once("admin/include/db.ini.php");
 require_once("admin/include/dbfunction.php");
 require_once("admin/include/common.php");
-require_once("admin/include/ctrl.php");
-require_once("admin/include/js.php");
 require_once("include/website.php");
-require_once("include/function.php");
 
 
 if ($Site->Theme != ""){
@@ -18,8 +14,7 @@ else{
 }
 
 
-require_once('admin/class/phpmailer/class.phpmailer.php');
-
+require_once('mail/class.phpmailer.php');
 
 
 if (! isset($_SESSION['Currency'])){
