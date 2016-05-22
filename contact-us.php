@@ -5,29 +5,15 @@ $ContatUs = new ContatUs();
 
 $Mode =  ReplaceEmpty('mode' , '');
 
-if ($Mode == "sendenquiry")
-{
-	if ($ContatUs->SendEnquiry())
-	{
-		SetMsg("Your password has been mailed to your email address.","success");            
-        header("Location: " . $Site->DocRoot . "contact-us.php");
-		exit();
-	}
-	else 
-	{
-	    SetMsg($ContatUs->Error,"error");           
-	}
 
-}
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
+$ContatUs->PrintForm();//profile page
+CloseBody();//close body
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
-$ContatUs->PrintForm();
-CloseBody();
-
-
+//class that present a user that want to conect the artist 
 Class ContatUs 
 {
 
@@ -44,10 +30,11 @@ Class ContatUs
 				<h2>צור קשר</h2>
 			</div>
 			<?php if(isset($_REQUEST['q']))
-			{
-				echo '<b><font color=red>Artist will contact you shortly</font></b>';
+			{// if mail was sended q will be true for messeg "Artist will contact you shortly"
+				echo '<b><font color=red>לקוח יקר פרטייך התקבלו, ניצור איתך קשר בהקדם האפשרי</font></b>';
 				
 			}?>
+			<!-- send the details of the customer to contact-us.php for sending mail contaction -->
 			<form action="mail/contact-us.php" method="post"> 
 				<div class="contactpage_intro">
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
@@ -57,15 +44,15 @@ Class ContatUs
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<label>שם פרטי:</label>
-						<input type="text" name="text1" class="custom_input" />
+						<input type="text" name="text1" class="custom_input" required/>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<label>שם משפחה:</label>
-						<input type="text" name="text2" class="custom_input" />
+						<input type="text" name="text2" class="custom_input" required/>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<label>מס' טלפון:</label>
-						<input type="number"  min="1" max="9999999999" name="text3" class="custom_input" />
+						<input type="number"  min="1" max="9999999999" name="text3" class="custom_input" required />
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 					<label>ציפורניים: </label>
@@ -104,12 +91,12 @@ Class ContatUs
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 					<label>גבות ושעוות: </label>
-					<input type="radio" name="nm3" value="בחירה" />
+					<input type="radio" name="nm3" value="גבות ושעוות" />
 					<label>בחירה</label>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<input type="submit" value="שלח" class="custom_btn" />
-						<input type="hidden" value="sendenquiry" name="mode" class="custom_btn" />
+						<input type="hidden" name="mode" class="custom_btn" />
 					</div><!-- contactpage_intro_row close// -->
 				</div>
 			</form>
@@ -117,40 +104,6 @@ Class ContatUs
 			
 				
 		<?php	
-	}
-	
-	function SendEnquiry()
-	{
-			global $Site;
-			
-			$SQL="select * from member where IsEnable = 1";
-			$rs=GetRS($SQL);
-			while($row=mysql_fetch_array($rs))
-			{
-				//send mail to artist for new custmer
-				$Email = $row['Email'] ;
-				$name = $row['FirstName'] ;
-				
-				$text1 = ReplaceEmpty('text1' , '');//first name	
-				$text2 = ReplaceEmpty('text2' , '');//last name
-				$text3 = ReplaceEmpty('text3' , '');//phone number
-				$nm1 = ReplaceEmpty('nm1' , '');//radio 1	
-				$nm2 = ReplaceEmpty('nm2' , '');//radio 2	
-				$nm3 = ReplaceEmpty('nm3' , '');//radio 3
-					
-				$HTML="Hello ".$name.", <br><br><br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Below listed enquiry from customer...<br><br><br>
-				First name: ".$text1."<br>
-				Last Name: ".$text2."<br>
-				Number: ".$text3."<br>
-				nm1: ".$nm1."<br>
-				nm2: ".$nm2."<br>
-				nm3: ".$nm3."<br>";
-				$from="sales@aignmakup.com";
-				$to="$Email";
-				$subject = "Recovery Password";
-				SendMail($HTML,$from,$to,$subject);		
-			}	
 	}
 }
 ?>

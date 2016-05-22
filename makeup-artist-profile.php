@@ -3,14 +3,14 @@ require_once('include/login.php');
 
 $Profile = new Profile(); 
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
-$Profile->PrintProfile();
-CloseBody();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
+$Profile->PrintProfile();//profile page
+CloseBody();//close body
 
-
+//class that present a user of the website- artist or other user
 Class Profile 
 {
 
@@ -24,11 +24,12 @@ Class Profile
 		?>
 		<div class="ipage artistprofile"><!-- ipage start -->
 			<div class="rowhead">
+				<!-- if user name is the same as a Ccookie we will show user profile -->
 				<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
 					<h2>פרופיל לקוח</h2>
 					<?php
 				}
-				else
+				else//alse will show makeup artist profile
 				{
 					?>
 					<h2>פרופיל אמנית האיפור</h2>
@@ -46,20 +47,18 @@ Class Profile
 					<div class="videopage_intro_coll"><!-- videopage_intro_coll start -->
 						<div class="videopage_intro_coll_top">
 							<div class="videopage_intro_coll_top_row">
-								<a href="makeup-artist-profile.php?mode=logout" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn1">התנתק</a>
+								<a href="makeup-artist-profile.php?mode=logout" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn1"><center>התנתק</center></a>
 							</div>
 							<div class="videopage_intro_coll_top_row">
-								<a href="chnagepassword.php" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn2">שינוי סיסמא</a>
+								<a href="chnagepassword.php" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn2"><center>שינוי סיסמא</center></a>
 							</div>
 						</div>
 						<?php 
 						
 						if($_SESSION['SAWProfileType'] == 'user')
 						{
-							//$Count = $Count + 1;
 							$y = 10;
 							$result = fmod($rw['Treatment'],$y);
-							//echo $result ;
 							if($rw['Treatment'] <5)
 							{
 							?>
@@ -68,6 +67,7 @@ Class Profile
 							}
 							elseif($rw['Treatment'] > 4)
 							{
+								//user treatment between more then 10
 								if($result >-1 and $result <5)
 								{
 								?>
@@ -81,6 +81,7 @@ Class Profile
 								</div>		
 								<?php	
 								}
+								//user treatment between more then 5 
 								elseif($result > 4 and $result <10)
 								{
 									?>
@@ -97,8 +98,7 @@ Class Profile
 							}	
 						}
 							?>
-					</div><!-- videopage_intro_coll close// -->
-					
+					</div><!-- user profile - name, phone number email and number of treatment// -->
 					<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
 					<div class="videopage_intro_colr"><!-- videopage_intro_colr start -->
 						<div class="videopage_intro_colr_row1">
@@ -112,26 +112,29 @@ Class Profile
 		
 					</div><!-- videopage_intro_colr close// -->
 					<?php 
-					}elseif($_SESSION['SAWProfileType'] == 'artist'){
+					//if it's artist profile, will show 2 link to different pages:makeup customers, nails customers
+					}
+					elseif($_SESSION['SAWProfileType'] == 'artist')
+					{
 					?>
-					<div style="width:100%">
-					<div class="videopage_intro_coll_bottom" style="width:46%;float:left;margin:5px">
-					<center><a href="nails-costomers.php">לקוחות ציפורניים</a></center>
-					</div>
-					<div class="videopage_intro_coll_bottom"  style="width:46%;float:left;margin:5px">
-					<center><a href="makup-costomers.php">לקוחות איפור</a></center>
-					</div>
-					</div>
+						<div style="width:100%">
+						<div class="videopage_intro_coll_bottom" style="width:46%;float:left;margin:5px">
+						<center><b><font color=#8B2252 size=4><a href="nails-costomers.php">לקוחות ציפורניים</a></font></b></center>
+						</div>
+						<div class="videopage_intro_coll_bottom"  style="width:46%;float:left;margin:5px">
+						<center><b><font color=#8B2252 size=4><a href="makup-costomers.php">לקוחות איפור</a></b></font></center>
+						</div>
+						</div>
 					<?php	
 					}
 					?>
 				<div class="clear"></div>
 				</div>
-		<?php
+				<?php
 		}
 		else
 		{	
-			echo "member does not exist" ;
+			echo '<b><font color=red>משתמש לא קיים</b></font>';
 		}
 		?>
 		</div><!-- ipage close// -->		

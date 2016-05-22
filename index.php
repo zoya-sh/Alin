@@ -1,11 +1,11 @@
 <?php
 require_once('include/require.php');
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 PrintHPSlider();
-CloseBody();
+CloseBody();//close body
 
 ?>
