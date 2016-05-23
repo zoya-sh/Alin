@@ -2,16 +2,16 @@
 require_once('include/require.php');
 
 $NailsTips = new NailsTips(); 
-
 $Mode = ReplaceEmpty("mode","show");
 $NailsTipsID = ReplaceEmpty("tipsid","");
 
-
+//if tips were add successfully
 if ($Mode == "addtips")
 {
+	//add tip successfully
 	if ($NailsTips->Add())
 	{
-		SetMsg("$NailsTips->ObjName added successfully","success");            
+		SetMsg("$NailsTips->ObjName הטיפ נוסף בהצלחה","success");            
         header("Location: ".$Site->AURL."nails-tips.php");
         exit();             
 	}
@@ -20,22 +20,24 @@ if ($Mode == "addtips")
 	    SetMsg($NailsTips->Error,"error");           
 	}
 }
+//if tips were deleted successfully
 if($Mode=="removed")
 {
+	//remove tip successfully
 	$NailsTips->Remove($NailsTipsID) ;
-	SetMsg("$MakupGallery->ObjName removed successfully","success");            
+	SetMsg("$MakupGallery->ObjName הטיפ נמחק בהצלחה","success");            
 	header("Location: ".$Site->AURL."nails-tips.php");
 	exit(); 
 }
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $NailsTips->PrintNailsTips();
-CloseBody();
+CloseBody();//close body
 
-
+//class for adding nail tips by artist
 Class NailsTips {
 
 	function NailsTips(){}
@@ -44,7 +46,7 @@ Class NailsTips {
 	{
 		global $Site  ;
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-
+		//check if the detalies is right
         if ($this->IsValid())
 		{	
             $TipsID = GetID("tips","TipsID");
@@ -52,7 +54,7 @@ Class NailsTips {
             $DateUpdated = $DateAdded;
 			$TipsID = GetID("tips", "TipsID");  
 			$Desc = ReplaceEmpty("desc","");
-			
+			//inset tip to data base
             $SQL = "insert into tips (TipsID , `Desc`, TipsType , MemberID , DateAdded) values ($TipsID , '$Desc' , '2' , '$SAWMemberID' , '$DateAdded')";
             GetRS($SQL);		
             return true;
@@ -62,11 +64,11 @@ Class NailsTips {
             return false;
         }
     }
-	
+	//delete tips 
 	function Remove($TipsID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//$SQL = "delete from tips where TipsID = $TipsID and TipsType = 2 and MemberID  = '$SAWMemberID'";
+		//delete tips from data base
 		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 2 and MemberID  = $SAWMemberID";
 		GetRs($SQL);
 		return true;
@@ -109,6 +111,7 @@ Class NailsTips {
 				   <?php
 				}
 			}
+			//TipsType = '2' means nail tips
 			$SQL = "select * from  tips where TipsType = '2'";
 			$rs = GetRs($SQL) ;
 			$Count = 1 ;

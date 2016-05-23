@@ -6,12 +6,13 @@ $DoItByYourSlef = new DoItByYourSlef();
 $Mode = ReplaceEmpty("mode","show");
 $VideoIDD = ReplaceEmpty("videoid","");
 
-
+//add video to the gallery
 if ($Mode == "addvideo")
 {
+	//add video successfully
 	if ($DoItByYourSlef->Add())
 	{
-		SetMsg("$DoItByYourSlef->ObjName added successfully","success");            
+		SetMsg("$DoItByYourSlef->ObjName נוסף בהצלחה","success");            
         header("Location: ".$Site->AURL."do-it-by-yourself.php");
         exit();             
 	}
@@ -20,20 +21,22 @@ if ($Mode == "addvideo")
 	    SetMsg($DoItByYourSlef->Error,"error");           
 	}
 }
+//delete photo from the gallery
 if($Mode=="removed")
 {	
+	//removed video successfully
 	$DoItByYourSlef->Remove($VideoIDD) ;
-	SetMsg("$MakupGallery->ObjName removed successfully","success");            
+	SetMsg("$MakupGallery->ObjName נמחק בהצלחה","success");            
 	header("Location: ".$Site->AURL."do-it-by-yourself.php");
 	exit(); 
 }
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $DoItByYourSlef->PrintDoItByYourSlef();
-CloseBody();
+CloseBody();//close body
 
 
 Class DoItByYourSlef
@@ -75,7 +78,6 @@ Class DoItByYourSlef
 						if(UploadFile($path .'/'. $name ,'profilepic-1')) 
 						{
 							$PushPath = $Site->AURL.''.$path.$name ;
-							//array_push($PathArray , $PushPath) ;
 							$count++; // Number of successfully uploaded files
 						}
 				}
@@ -139,24 +141,35 @@ Class DoItByYourSlef
 			}
 			}
 			?>
-			<div class="videopage_intro">
-			<?php
-			$SQL = "select * from  video";
-			$rs = GetRs($SQL) ;
-			$Count = 1 ;
-			while($rw = mysql_fetch_array($rs)){
-			?>
-				<div class="videopage_intro_col"><!-- videopage_intro_col start -->
-				<video width="100%" height="100%" controls>
-				<source src="<?php echo $rw['Path'] ?>" type="video/mp4">
-				</video>
-				<?php if($SAWMemberID == $rw['MemberID']) { ?><a href="do-it-by-yourself.php?mode=removed&videoid=<?php echo $rw['VideoID'] ?>" class="remove_btn"></a> <?php } ?>
-				</div><!-- videopage_intro_col close -->
-			<?php
-			}
-			?>
+			<ul class="videopage_intro">
+				<?php
+				$SQL = "select * from  video";
+				$rs = GetRs($SQL) ;
+				$Count = 0 ;
+				while($rw = mysql_fetch_array($rs))
+				{
+					$Count = $Count + 1;
+					
+					?>
+					
+					<div class="videopage_intro_col"><!-- videopage_intro_col start -->
+					<video width="100%" height="100%" controls>
+					<source src="<?php echo $rw['Path'] ?>" type="video/mp4"></video>
+					<?php if($SAWMemberID == $rw['MemberID']) { ?>
+					<a href="do-it-by-yourself.php?mode=removed&videoid=<?php echo $rw['VideoID'] ?>" class="remove_btn"></a> 
+					<?php 
+					} 
+					?>
+					</div> <!-- videopage_intro_col close -->
+					<?php
+					if($Count%2==0)
+					{	
+						echo "<p style='	      clear: both;'></p>";
+					}
+				}
+				?>
+			</ul>
 			<div class="clear"></div>
-			</div>
 		</div><!-- ipage close -->
 		<?php	
 	}

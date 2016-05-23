@@ -5,75 +5,19 @@ $ForgetPassword = new ForgetPassword();
 
 $Mode = ReplaceEmpty("mode","show");
 
-if ($Mode == "forgetpassword")
-{
-	if ($ForgetPassword->Add())
-	{
-		SetMsg("$ForgetPassword->ObjName Password sented successfully","success");            
-        header("Location: ".$Site->AURL."makeup-artist-profile.php");
-        exit();             
-	}
-	else 
-	{
-	    SetMsg($ForgetPassword->Error,"error");           
-	}
-}
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $ForgetPassword->PrintForm();
-CloseBody();
+CloseBody();//close body
 
-
+//class for sending recovery password to email
 Class ForgetPassword 
 {
 
 	function ForgetPassword(){}
-	
-	function Add()
-	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-       
-	   if ($this->IsValid())
-		{	
-			$email = ReplaceEmpty("email","");
-			//send password to mail
-            $SQL = "Select * FROM member where Email = '$email' ";
-			ECHO $SQL ;
-			$mrs=GetRS($SQL);
-			$mrow=mysql_fetch_array($mrs);
-			$name=stripslashes($mrow['FirstName'].' '.$mrow['LastName']);
-			$Password = $mrow['Password'] ;
-
-			$HTML="Hello ".$name.", <br><br><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Recovery Details are listed below...<br><br><br>
-			Emailid: ".$this->Email."<br>
-			Password:".$Password."<br><br><br>
-			Click on Below Link for login with provided credentials....
-			<a href='http://localhost/alin-makeup/' > Login</a>";
-			$from="sales@alin-makeup.com";
-			$to="$email";
-			$subject = "Recovery Password";
-			SendMail($HTML,$from,$to,$subject);		
-			return true;
-        }
-        else 
-		{
-            return false;
-        }
-    }
-	
-	function IsValid()
-	{
-		$this->Error = "";
-		$Valid = true;
-        $error = "";
-		$this->Error = $error;
-		
-		return $Valid;
-	}
 	
 	function PrintForm()
 	{
@@ -83,9 +27,10 @@ Class ForgetPassword
 				<h2>שחכת סיסמא?</h2>
 			</div><?php if(isset($_REQUEST['q']))
 			{
-				echo '<b><font color=red>Check your Mail</b></font>';
+				echo '<b><font color=red>הסיסמא נשלחה בהצלחה</b></font>';
 				
 			}?>
+			<!-- send the details of the customer to mail.php for restore his password -->
 			<form action="mail/mail.php" method="POST" enctype="multipart/form-data">
 				<div class="">
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->

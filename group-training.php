@@ -3,14 +3,14 @@ require_once('include/require.php');
 
 $GTranning = new GTranning(); 
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $GTranning->PrintGTranning();
-CloseBody();
+CloseBody();//close body
 
-
+//class present group tranning information
 Class GTranning 
 {
 

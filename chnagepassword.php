@@ -2,14 +2,14 @@
 require_once('include/require.php');
 
 $CPassword = new CPassword(); 
-
 $Mode = ReplaceEmpty("mode","show");
 
 if ($Mode == "chnagepassword")
 {
+	//if the password changed successfuliy
 	if ($CPassword->Add())
 	{
-		SetMsg("$CPassword->ObjName added successfully","success");            
+		SetMsg("$CPassword->ObjName הסיסמא שונתה בהצלחה","success");            
         header("Location: ".$Site->AURL."makeup-artist-profile.php");
         exit();             
 	}
@@ -19,14 +19,14 @@ if ($Mode == "chnagepassword")
 	}
 }
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $CPassword->PrintForm();
-CloseBody();
+CloseBody();//close body
 
-
+//class for changing user password
 Class CPassword 
 {
 
@@ -34,13 +34,13 @@ Class CPassword
 	
 	 function Add()
 	 {
+		 //if the user exist he can add new password
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
         if ($this->IsValid())
 		{
 			$NPassword = ReplaceEmpty("newpassword","");
             $SQL = "update member set password = '$NPassword' where MemberID = $SAWMemberID";
             GetRS($SQL);	
-
             return true;
         }
         else 
@@ -48,14 +48,13 @@ Class CPassword
             return false;
         }
 	 }
-	
+	///chek if the user valid
 	function IsValid()
 	{
 		$this->Error = "";
 		$Valid = true;
         $error = "";
 		$this->Error = $error;
-
 		return $Valid;
 	}
 	

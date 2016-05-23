@@ -2,15 +2,16 @@
 require_once('include/require.php');
 
 $MakupGallery = new MakupGallery(); 
-
 $Mode = ReplaceEmpty("mode","show");
 $MGalleryID = ReplaceEmpty("id","");
 
+//add photo to the gallery
 if ($Mode == "photoupload")
 {
+	//add photo successfully
 	if ($MakupGallery->Add())
 	{
-		SetMsg("$MakupGallery->ObjName added successfully","success");            
+		SetMsg("$MakupGallery->ObjName נוספה בהצלחה","success");            
         header("Location: ".$Site->AURL."nails-gallery.php");
         exit();             
 	}
@@ -19,37 +20,39 @@ if ($Mode == "photoupload")
 	    SetMsg($MakupGallery->Error,"error");           
 	}
 }
-
+//delete photo from the gallery
 if($Mode=="remove")
 {
+	//removed photo successfully
 	$MakupGallery->Remove($MGalleryID) ;
-	SetMsg("$MakupGallery->ObjName added successfully","success");            
+	SetMsg("$MakupGallery->ObjName נחמקה בהצלחה","success");            
 	header("Location: ".$Site->AURL."nails-gallery.php");
 	exit(); 
 }
 
-StartHeader();
+StartHeader();//view of page with the logo
 $MakupGallery->InsertMyHead();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $MakupGallery->PrintMakupGallery();
-CloseBody();
+CloseBody();//close body
 
 Class MakupGallery 
 {
 	function MakupGallery(){}
 	
+	 //add photo to the gallery
 	 function Add()
 	 {
 
 		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//cookie
 		
         if ($this->IsValid())
 		{
 			
-            $MGalleryID = GetID("mgallery","MGalleryID");
+            $MGalleryID = GetID("mgallery","MGalleryID");//id number of photo
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
 
@@ -58,8 +61,8 @@ Class MakupGallery
 
 			$PushPath = "" ;
 			$count = 0  ;
-			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");
-			$max_file_size = 1024*100; //100 kb
+			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for photo that we can upload
+			$max_file_size = 1024*100; //photo size
 			$path = "photo/"; // Upload directory
 			
 			$ProfilePicFileName1 = GetUploadFileName("profilepic-1", $MGalleryID.'-1');
@@ -77,7 +80,6 @@ Class MakupGallery
 						if(UploadFile($path .'/'. $name ,'profilepic-1')) 
 						{
 							$PushPath = $Site->AURL.''.$path.$name ;
-							//array_push($PathArray , $PushPath) ;
 							$count++; // Number of successfully uploaded files
 						}
 				}

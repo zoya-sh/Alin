@@ -2,16 +2,16 @@
 require_once('include/require.php');
 
 $MakeupTips = new MakeupTips(); 
-
 $Mode = ReplaceEmpty("mode","show");
 $MackupTipsID = ReplaceEmpty("tipsid","");
 
-
+//if tips were add successfully
 if ($Mode == "addtips")
 {
+	//add tip successfully
 	if ($MakeupTips->Add())
 	{
-		SetMsg("$MakeupTips->ObjName added successfully","success");            
+		SetMsg("$MakeupTips->ObjName הטיפ נוסף בהצלחה","success");            
         header("Location: ".$Site->AURL."makeup-tips.php");
         exit();             
 	}
@@ -20,40 +20,41 @@ if ($Mode == "addtips")
 	    SetMsg($MakeupTips->Error,"error");           
 	}
 }
+//if tips were deleted successfully
 if($Mode=="removed")
 {
+	//remove tip successfully
 	$MakeupTips->Remove($MackupTipsID) ;
-	SetMsg("$MakupGallery->ObjName removed successfully","success");            
+	SetMsg("$MakupGallery->ObjName הטיפ הוסר בהצלחה","success");            
 	header("Location: ".$Site->AURL."makeup-tips.php");
 	exit(); 
 }
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $MakeupTips->PrintMakeupTips();
-CloseBody();
+CloseBody();//close body
 
-
-Class MakeupTips 
-{
+//class for adding maekup tips by artist
+Class MakeupTips {
+	
 	function MakeupTips(){}
 	
 	function Add()
 	{
 
 		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-
+		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//cookie
+		//check if the detalies is right
         if ($this->IsValid())
 		{
             $TipsID = GetID("tips","TipsID");
             $DateAdded = date("Y-m-d H:i:s");
-            $DateUpdated = $DateAdded;
-			$TipsID = GetID("tips", "TipsID");  
+            $DateUpdated = $DateAdded; 
 			$Desc = ReplaceEmpty("desc","");
-						
+			//inset tip to data base
             $SQL = "insert into tips (TipsID , `Desc`, TipsType , MemberID , DateAdded) values ($TipsID , '$Desc' , '1' , '$SAWMemberID' , '$DateAdded')";		
             GetRS($SQL);
             return true;
@@ -63,11 +64,11 @@ Class MakeupTips
             return false;
         }
     }
-	
+	//delete tips 
 	function Remove($TipsID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//$SQL = "delete from tips where TipsID = $TipsID and TipsType = 1 and MemberID = '$SAWMemberID'";
+		//delete tips from data base
 		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 1 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;		
@@ -85,7 +86,6 @@ Class MakeupTips
 	function PrintMakeupTips()
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//global $Site ;
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
@@ -110,6 +110,7 @@ Class MakeupTips
 				   <?php
 				}
 			}
+			//TipsType = '1' means makeup tips
 			$SQL = "select * from  tips where TipsType = '1'";
 			$rs = GetRs($SQL) ;
 			$Count = 1 ;

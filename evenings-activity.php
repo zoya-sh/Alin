@@ -3,14 +3,14 @@ require_once('include/require.php');
 
 $EActivity = new EActivity(); 
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $EActivity->PrintEActivity();
-CloseBody();
+CloseBody();//close body
 
-
+//class present evening tranning information
 Class EActivity 
 {
 	function EActivity(){}
@@ -30,7 +30,6 @@ Class EActivity
 				while($rw = mysql_fetch_array($rs)){
 	
 				?>
-					יתווסף ע"י המאפרת אלין מישייב				
 
 					
 					<?php

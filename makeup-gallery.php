@@ -28,13 +28,13 @@ if($Mode=="remove")
 	exit(); 
 }
 
-StartHeader();
+StartHeader();//view of page with the logo
 $MakupGallery->InsertMyHead();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $MakupGallery->PrintMakupGallery();
-CloseBody();
+CloseBody();//close body
 
 
 Class MakupGallery 

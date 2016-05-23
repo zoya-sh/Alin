@@ -2,16 +2,16 @@
 require_once('include/require.php');
 
 $CareTips = new CareTips(); 
-
 $Mode = ReplaceEmpty("mode","show");
 $CareTipsID = ReplaceEmpty("tipsid","");
 
-
+//if tips were add successfully
 if ($Mode == "addtips")
 {
+	//add tip successfully
 	if ($CareTips->Add())
 	{
-		SetMsg("$CareTips->ObjName added successfully","success");            
+		SetMsg("$CareTips->ObjName הטיפ נוסף בהצלחה","success");            
         header("Location: ".$Site->AURL."care-tips.php");
         exit();             
 	}
@@ -20,32 +20,34 @@ if ($Mode == "addtips")
 	    SetMsg($CareTips->Error,"error");           
 	}
 }
+//if tips were deleted successfully
 if($Mode=="removed")
 {	
+	//remove tip successfully
 	$CareTips->Remove($CareTipsID);
-	SetMsg("$MakupGallery->ObjName removed successfully","success");            
+	SetMsg("$MakupGallery->ObjName הטיפ הוסר בהצלחה","success");            
 	header("Location: ".$Site->AURL."care-tips.php");
 	exit(); 
 }
 
-StartHeader();
-CloseHeader();
-StartBody();
-PrintTopHeader();
+StartHeader();//view of page with the logo
+CloseHeader();//close of header
+StartBody();//middle of page
+PrintTopHeader();//tollbar of the page
 $CareTips->PrintCareTips();
-CloseBody();
+CloseBody();//close body
 
-
-Class CareTips 
-{
-
+//class for adding care tips by artist
+Class CareTips {
+	
 	function CareTips(){}
 	
 	function Add()
 	{
 		global $Site  ;
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		
+		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		//check if the detalies is right
 		if ($this->IsValid())
 		{			
 			$TipsID = GetID("tips","TipsID");
@@ -53,7 +55,7 @@ Class CareTips
 			$DateUpdated = $DateAdded;
 			$TipsID = GetID("tips", "TipsID");  
 			$Desc = ReplaceEmpty("desc","");	
-				
+			//inset tip to data base
 			$SQL = "insert into tips (TipsID , `Desc`, TipsType , MemberID , DateAdded) values ($TipsID , '$Desc' , '3' , '$SAWMemberID' , '$DateAdded')";
 			GetRS($SQL);	
 			return true;
@@ -63,7 +65,7 @@ Class CareTips
 			return false;
 		}
     }
-	
+	//delete tips 
 	function Remove($TipsID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
@@ -84,6 +86,7 @@ Class CareTips
 	function PrintCareTips()
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		//global $Site ;
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
@@ -109,6 +112,7 @@ Class CareTips
 				   <?php
 				}
 			}
+			//TipsType = '1' means care tips
 			$SQL = "select * from  tips where TipsType = '3'";
 			$rs = GetRs($SQL) ;
 			$Count = 1 ;
