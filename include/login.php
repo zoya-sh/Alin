@@ -4,28 +4,36 @@ require_once("include/require.php");
 $Mode = ReplaceEmpty("mode", "");
 $VarietyID = ReplaceEmpty("varietyid" , "") ;
 
-if (isset($_GET['mode'])){
+if (isset($_GET['mode']))
+{
 	global $Cart ;
-	if ($_GET['mode'] == "logout"){
+	//on logout unset memberId and ProfileType(makeup artist or simple user)
+	if ($_GET['mode'] == "logout")
+	{
 		unset($_SESSION['SAWMemberID']);
 		unset($_SESSION['SAWProfileType']);
-		SetMsg("Logout Successfully !");
-		header("Location:  " . $Site->DocRoot . "index.php");
+		SetMsg('<b><font color=red>ההתנתקות בוצעה בהצלחה</b></font>');
+		header("Location:  " . $Site->DocRoot . "index.php");// on logout go to home page
 		$Cart->ClearCart();
 	}
 }
 
-if ($Mode == "login"){
-	
-	if (isset($_POST['username'])){
-		if (! (doUserAndPasswordMatch($_POST['username'],$_POST['password']))){
-			SetMsg("Incorrect username or password", "error");
+//on login set memberId and ProfileType(makeup artist or simple user)
+if ($Mode == "login")
+{	
+	if (isset($_POST['username']))
+	{
+		//if user or password not exist or wrong show error to user
+		if (! (doUserAndPasswordMatch($_POST['username'],$_POST['password'])))
+		{
+			SetMsg('<b><font color=red>שם משתמש או סימסא לא נכונים</b></font>', "error");
 			PrintLoginScreen(1);
 			exit;
 		}
-		else {
+		else 
+		{
 			if (! (isUserActive($_POST['username'],$_POST['password']))){
-				SetMsg("Your account is not activated", "error");
+				SetMsg('<b><font color=red>חשבונך אינו פעיל</b></font>', "error");
 				PrintLoginScreen(2);
 				exit;
 			}
@@ -37,7 +45,7 @@ if (!($myUser = getCurrentUser())){
 	PrintLoginScreen();
 	exit;
 }
-
+//if ther is no error
 function PrintLoginScreen($error = 0){
 
 	StartHeader();
@@ -45,7 +53,7 @@ function PrintLoginScreen($error = 0){
 	StartBody();
 	PrintTopHeader();
 	ShowMsg();
-	PrintLoginForm();
+	PrintLoginForm();//login view
 	CloseBody();	
 	exit();
 }
@@ -114,7 +122,7 @@ function PrintLoginForm(){
     <!-- ipage close// -->
     <?php 
 }
-
+//function get the current user 
 function getCurrentUser()
 {
 	if (isset($_SESSION['SAWMemberID'])) 
@@ -127,6 +135,7 @@ function getCurrentUser()
 		return False;
 }
 
+//function checks if user match his password
 function doUserAndPasswordMatch($user,$password)
 {
 	global $db;
@@ -147,10 +156,11 @@ function doUserAndPasswordMatch($user,$password)
 	}
 }
 
+//function checks if user account is not activated
 function isUserActive($user,$password)
 {
 	global $db;
-
+	//0 if we want not to activit user account, 1 to activit user account
 	$SQL = "select * from member where Email = '$user' and password = '$password' and isenable = 1";
 	$rsUser = @mysql_query($SQL,$db->cnn) or die(mysql_error());
 
@@ -166,6 +176,7 @@ function isUserActive($user,$password)
 	}
 }
 
+//for setting cookies for user name and type
 function SetSession($userid)
 {
 	global $db;
