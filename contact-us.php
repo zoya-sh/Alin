@@ -72,7 +72,7 @@ Class ContatUs
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 					<label>איפור: </label>
-					<input type="radio" name="nm2" value=">איפור ערב" />
+					<input type="radio" name="nm2" value="איפור ערב" />
 					<label>איפור ערב</label>
 					<input type="radio" name="nm2" value="איפור כלה" />
 					<label>איפור כלה</label>

@@ -59,7 +59,7 @@ Class MakeupGallery
 			$PushPath = "" ;
 			$count = 0  ;
 			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for photo that we can upload
-			$max_file_size = 1024*100; ////photo size
+			$max_file_size = 1024*100; //photo size
 			$path = "photo/"; // Upload directory
 			
 			//our PHP file named "profilepic-1" automatically entered into a global super variable named $ FILES_.
@@ -84,7 +84,7 @@ Class MakeupGallery
 						}
 				}
 			}
-			//is photos web uploaded to the directory successfully we saved them on dataBase
+			//if photos web uploaded to the directory successfully we saved them on dataBase
 			if(!empty($_FILES['profilepic-1']['name']))
 			{	
 				$MGalleryID = GetID("mgallery", "MGalleryID");  
@@ -99,7 +99,7 @@ Class MakeupGallery
             return false;
         }
     }
-	//delete nalis photos from dataBase
+	//delete makeup photos from dataBase
 	function Remove($GID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
@@ -153,7 +153,7 @@ Class MakeupGallery
 				$Count = $Count + 1;			
 		?>
 				
-				<li ><span><a href="#" data-title="pic" data-desc="pic" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
+				<li><span><a href="#" data-title="pic" data-desc="pic" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
 				<?php if($SAWMemberID == $rw['MemberID'])
 				{ ?>
 					<a href="<?php echo $Site->AURL ?>makeup-gallery.php?mode=remove&id=<?php echo $rw['MGalleryID'] ?>"  >removed</a>

@@ -73,7 +73,7 @@ Class Profile
 								?>
 								<div class="videopage_intro_coll_bottom">
 									<div class="videopage_intro_coll_bottom_row">
-										<a href="<?php echo $Site->ThemePath ?>images/treatment10.png" target="_new" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">print</a>
+										<a href="<?php echo $Site->ThemePath ?>images/treatment10.png" target="_new" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
 									</div>
 									<div class="videopage_intro_coll_bottom_row">
 										<img src="<?php echo $Site->ThemePath ?>images/treatment10.png" alt="" />
@@ -87,7 +87,7 @@ Class Profile
 									?>
 									<div class="videopage_intro_coll_bottom">
 										<div class="videopage_intro_coll_bottom_row">
-											<a href="<?php echo $Site->ThemePath ?>images/treatment5.png"  target="_new"  class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">print</a>
+											<a href="<?php echo $Site->ThemePath ?>images/treatment5.png"  target="_new"  class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
 										</div>
 										<div class="videopage_intro_coll_bottom_row">
 											<img src="<?php echo $Site->ThemePath ?>images/treatment5.png" alt="" />
