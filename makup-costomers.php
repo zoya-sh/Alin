@@ -38,6 +38,8 @@ Class MackupCustomer
 		$this->PhoneNumber = ReplaceEmpty("phonenumber", "");
 		$this->DOB = ReplaceEmpty("dob", "");
 		$this->MakeupType = ReplaceEmpty("MakeupType", "");
+		$this->FacialStructure = ReplaceEmpty("faceStruc", "");
+		$this->SkinType = ReplaceEmpty("skin", "");
 		$this->Mode = ReplaceEmpty("mode", "");	
 	}
 	//add user to data base
@@ -47,7 +49,7 @@ Class MackupCustomer
 		$MemberID =  @$_SESSION['SAWMemberID'] ;
 		$date=date('Y-m-d');
 			//save user on data base 
-		$SQL = "insert into mcustomer (date,MCustomerID, MemberID,  FirstName, LastName ,  PhoneNumber ,  DOB , MakeupType) values ('$date',$MPhoneNumber, '$MemberID',  '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->DOB', '$this->MakeupType')";
+		$SQL = "insert into mcustomer (date,MCustomerID, MemberID,  FirstName, LastName ,  PhoneNumber ,  DOB , MakeupType, FacialStructure, SkinType ) values ('$date',$MPhoneNumber, '$MemberID',  '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->DOB', '$this->MakeupType', '$this->FacialStructure', '$this->SkinType')";
 		GetRS($SQL);	
 		return true;
 	}
@@ -112,6 +114,16 @@ Class MackupCustomer
 								<option value="Evening activity">איפור ערב</option>
                                 <option value="Bridesmaids Party">מסיבת רווקות</option>
                             </select>
+                        </div>
+						 <div class="makeupprofilepage_intro_col_row">
+                            <!-- Facial Structure of customer -->
+                            <label>מבנה פנים:</label>
+                            <input type="text" name="faceStruc" class="custom_input" value="<?php echo $this->FacialStructure ?>" required />
+                        </div>
+						 <div class="makeupprofilepage_intro_col_row">
+                            <!-- Skin Type of customer  -->
+                            <label>סוג עור:</label>
+                            <input type="text" name="skin" class="custom_input" value="<?php echo $this->SkinType ?>" required />
                         </div>
                         <!-- makeupprofilepage_intro_col_row close// -->
 

@@ -13,4 +13,3 @@ $db->name = "alinmakeup";
 //Open a connection to a MySQL Server
 $db->cnn = mysql_connect("$db->host", "$db->user", "$db->pass") or die();
 $db->db = @mysql_select_db($db->name, $db->cnn) or die(mysql_error());
-mysql_query("SET NAMES 'utf8'",$db->cnn);

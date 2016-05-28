@@ -57,7 +57,7 @@ Class JoinUs
 			$SQL = "insert into member (MemberID, ProfileType, FirstName, LastName,  TelNo, Email, Password, IsActive, IsEnable, DateAdded, DateUpdated) values ($MemberID, 'user', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->Email', '$this->Password', '1' , '$IsEnable', '$DateAdded', '$DateUpdated')";
 			GetRS($SQL);
 
-			$_SESSION['SAWMemberID'] = $MemberID ;//cookie
+			$_SESSION['SAWMemberID'] = $MemberID ;//cookie-To not allow impersonation of another user PHP gives each customer ID
 			
 			return true;
 		}
@@ -72,7 +72,7 @@ Class JoinUs
         $this->Error = "";
         $Valid = true;
         $error = "";
-		//email
+		//email check from common.php
 		if (! IsValidEmail($this->Email)) 
 		{
 			if ($error != "") { $error = "$error<br>"; }
