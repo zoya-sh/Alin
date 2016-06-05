@@ -3,6 +3,11 @@ require 'PHPMailerAutoload.php';
 	//a proper connection to MySQL was made
 	$con=mysqli_connect("localhost","root","","alinmakeup");
 	
+	
+	// Set definition data to support Hebrew
+	mysqli_set_charset($con, "utf8");
+	
+	
 	//select all columns from table "mcustomer"
     $SQL = "select * from `mcustomer`";
 	

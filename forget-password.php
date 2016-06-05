@@ -25,11 +25,16 @@ Class ForgetPassword
 		<div class="ipage gallerypage"><!-- ipage start -->
 			<div class="rowhead">
 				<h2>שחכת סיסמא?</h2>
-			</div><?php if(isset($_REQUEST['q']))
+			</div><?php if(isset($_REQUEST['q']) && $_REQUEST['q']==1)
 			{
 				echo '<b><font color=red>הסיסמא נשלחה בהצלחה</b></font>';
-				
-			}?>
+			}
+			// if the mail failed
+			if(isset($_REQUEST['q']) && $_REQUEST['q']==0)
+			{
+				echo '<b><font color=red>משהו השתבש , נסה שנית</b></font>';
+			}
+			?>
 			<!-- send the details of the customer to mail.php for restore his password -->
 			<form action="mail/mail.php" method="POST" enctype="multipart/form-data">
 				<div class="">

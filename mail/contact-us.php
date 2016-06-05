@@ -45,7 +45,8 @@
 
 		//send the message, check for errors
 			if (!$mail->send()) {
-				echo "mail failed";
+				// if the mail failed
+				header('location:../contact-us.php?q=0');
 			}
 			else {// if mail was sended q will be true for messeg "Artist will contact you shortly"
 				header('location:../contact-us.php?q=1');

@@ -53,7 +53,7 @@ Class JoinUs
 			$DateAdded = gmdate("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
 			$IsEnable = 1;
-
+				//sha($this->Password)
 			$SQL = "insert into member (MemberID, ProfileType, FirstName, LastName,  TelNo, Email, Password, IsActive, IsEnable, DateAdded, DateUpdated) values ($MemberID, 'user', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->Email', '$this->Password', '1' , '$IsEnable', '$DateAdded', '$DateUpdated')";
 			GetRS($SQL);
 

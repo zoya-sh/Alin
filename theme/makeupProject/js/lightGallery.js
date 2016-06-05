@@ -1,4 +1,4 @@
-
+//Lightgallery is a lightweight modular responsive jquery light box gallery, which allows  to create beautiful image & video galleries.
 ;(function($){
 	"use strict";
 	$.fn.lightGallery = function(options) {

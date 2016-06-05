@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2015 at 02:59 PM
+-- Generation Time: Jun 05, 2016 at 12:26 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `alinmackup`
+-- Database: `alinmakeup`
 --
 
 -- --------------------------------------------------------
@@ -33,25 +33,25 @@ CREATE TABLE `mcustomer` (
   `FirstName` varchar(255) NOT NULL,
   `LastName` varchar(255) NOT NULL,
   `PhoneNumber` int(255) NOT NULL,
-  `MakeupType` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `MakeupType` varchar(255) NOT NULL,
+  `FacialStructure` varchar(255) NOT NULL,
+  `SkinType` varchar(255) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `mcustomer`
 --
 
-INSERT INTO `mcustomer` (`MCustomerID`, `DOB`, `MemberID`, `FirstName`, `LastName`, `PhoneNumber`, `MakeupType`) VALUES
-(1, '', 2, 'Mritunjay', 'Kumar', 2147483647, 'Group Tranning'),
-(2, '', 2, 'makup artis 1', 'mak last name', 0, 'Group Tranning'),
-(3, '', 2, 'first name ', 'last lanem', 999, 'Evening Makeup'),
-(4, '', 2, 'zoe', 'lina', 50, 'Evening Makeup'),
-(5, '', 2, 'assasdasd', 'adasd', 34534, 'Group Tranning'),
-(6, '', 2, 'a', 'b', 0, 'Evening Makeup'),
-(7, '', 2, 'aa', 'b', 0, 'Birthday'),
-(8, '24-09-1987', 2, 'zoya', 'shaulove', 547326486, 'Personal Tranning'),
-(9, '12-13-14', 2, 'e', 'r', 2147483647, 'Evening Makeup'),
-(10, '3.7.12', 2, 'zoya', 'shaulove', 547326486, 'Bride Makeup'),
-(11, '1', 2, '1', '2', 3, 'Bride Makeup');
+INSERT INTO `mcustomer` (`MCustomerID`, `DOB`, `MemberID`, `FirstName`, `LastName`, `PhoneNumber`, `MakeupType`, `FacialStructure`, `SkinType`, `date`) VALUES
+(3, '2016-06-05', 2, 'חנה', 'לסלו', 1, 'Bride Makeup', 'עגול', 'יבש', '2015-09-09'),
+(4, '2016-06-05', 2, 'ב', 'ב', 54, 'Evening Makeup', 'ב', 'ב', '2016-06-05'),
+(5, '2016-06-05', 2, 'ג', 'ג', 123, 'Makeup Alliance', 'ג', 'ג', '2004-06-05'),
+(6, '2016-06-05', 2, 'ד', 'ד', 123, 'Makeup Bat Mitzvah', 'ד', 'ד', '2016-06-05'),
+(7, '2016-06-05', 2, 'ה', 'ה', 123, 'Personal Tranning', 'ה', 'ה', '2016-06-05'),
+(8, '2016-06-05', 2, 'ו', 'ו', 123, 'Group Tranning', 'ו', 'ו', '2016-03-07'),
+(9, '2016-06-05', 2, 'ז', 'ז', 3, 'Evening activity', 'ז', 'ז', '2016-06-05'),
+(10, '2016-06-05', 2, 'ח', 'ח', 456, 'Bridesmaids Party', 'ח', 'ח', '2016-05-29');
 
 -- --------------------------------------------------------
 
@@ -61,32 +61,27 @@ INSERT INTO `mcustomer` (`MCustomerID`, `DOB`, `MemberID`, `FirstName`, `LastNam
 
 CREATE TABLE `member` (
   `MemberID` int(11) NOT NULL,
-  `CustomerType` varchar(255) NOT NULL,
   `ProfileType` varchar(255) NOT NULL,
-  `Title` varchar(255) DEFAULT NULL,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Treatment` tinyint(4) NOT NULL,
   `TelNo` varchar(255) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `Password` varchar(255) DEFAULT NULL,
-  `IsActive` tinyint(4) NOT NULL DEFAULT '0',
-  `ActivationCode` varchar(255) NOT NULL,
-  `IsEnable` tinyint(4) DEFAULT '0',
+  `IsActive` tinyint(4) NOT NULL,
+  `IsEnable` tinyint(4) NOT NULL,
   `DateAdded` datetime DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`MemberID`, `CustomerType`, `ProfileType`, `Title`, `FirstName`, `LastName`, `Treatment`, `TelNo`, `Email`, `Password`, `IsActive`, `ActivationCode`, `IsEnable`, `DateAdded`, `DateUpdated`) VALUES
-(2, '', 'artist', NULL, 'alin', 'mishayev', 0, '972507817770', 'alin.makeup.artist@gmail.com', '1111', 0, '', 1, '2015-12-23 13:58:02', '2015-12-23 13:58:02'),
-(7, '', 'user', NULL, '× ×ª× ××œ', '×‘× ×“×”', 0, '0547326486', 'nel@gmail.com', '111', 1, '', 1, '2015-12-29 12:25:19', '2015-12-29 12:25:19'),
-(4, '', 'user', NULL, 'first nmae', 'last', 17, '555', 'email@email.com', 'email@email.com', 1, '', 1, '2015-12-23 14:38:06', '2015-12-23 14:38:06'),
-(6, '', 'user', NULL, '×–×•×™×”', '×©××•×œ×•×‘', 0, '123', 'zo@gmail.com', '123', 1, '', 1, '2015-12-26 23:27:14', '2015-12-26 23:27:14'),
-(5, '', 'user', NULL, 'zoya', '×©××•×œ×•×‘', 22, '0547326486', 'zoya.shaulove@gmail.com', '123', 1, '', 1, '2015-12-26 23:25:47', '2015-12-26 23:25:47');
+INSERT INTO `member` (`MemberID`, `ProfileType`, `FirstName`, `LastName`, `Treatment`, `TelNo`, `Email`, `Password`, `IsActive`, `IsEnable`, `DateAdded`, `DateUpdated`) VALUES
+(2, 'artist', '\0a\0l\0i\0n', 'mishayev', 0, '972507817770', 'alin.makeup.artist@gmail.com', '123', 0, 1, '2015-12-23 13:58:02', '2015-12-23 13:58:02'),
+(3, 'user', 'זויה', 'שאולוב', 5, '0547326486', 'zoya.shaulove@gmail.com', 'zoya213', 1, 1, '2016-06-04 17:34:28', '2016-06-04 17:34:28'),
+(4, 'user', 'מעיין', 'נחום', 11, '0547326486', 'shaulove.zoya@gmail.com', 'ZOSHA890703', 1, 1, '2016-06-05 08:43:02', '2016-06-05 08:43:02');
 
 -- --------------------------------------------------------
 
@@ -100,17 +95,29 @@ CREATE TABLE `mgallery` (
   `ImagePath` varchar(250) NOT NULL,
   `IsNail` tinyint(4) NOT NULL DEFAULT '0',
   `DateAdded` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `mgallery`
 --
 
 INSERT INTO `mgallery` (`MGalleryID`, `MemberID`, `ImagePath`, `IsNail`, `DateAdded`) VALUES
-(8, 0, 'http://localhost/alin-makeup/photo/1451203824111.jpg', 2, '0000-00-00 00:00:00'),
-(11, 2, 'http://localhost/alin-makeup/photo/145139666420150917_155621.jpg', 2, '0000-00-00 00:00:00'),
-(9, 2, '', 0, '0000-00-00 00:00:00'),
-(10, 2, 'http://localhost/alin-makeup/photo/1451396661123.JPG', 2, '0000-00-00 00:00:00');
+(10, 2, 'http://localhost/alin/photo/146511680014515788481.JPG', 0, '0000-00-00 00:00:00'),
+(11, 2, 'http://localhost/alin/photo/146511680314515789622.JPG', 0, '0000-00-00 00:00:00'),
+(12, 2, 'http://localhost/alin/photo/146511680814515789863.JPG', 0, '0000-00-00 00:00:00'),
+(22, 2, 'http://localhost/alin/photo/146511692214515796553.jpg', 2, '0000-00-00 00:00:00'),
+(21, 2, 'http://localhost/alin/photo/146511691914515795732.jpg', 2, '0000-00-00 00:00:00'),
+(20, 2, 'http://localhost/alin/photo/146511691614515795161.jpg', 2, '0000-00-00 00:00:00'),
+(13, 2, 'http://localhost/alin/photo/146511681314515791274.jpg', 0, '0000-00-00 00:00:00'),
+(23, 2, 'http://localhost/alin/photo/146511692514515797354.jpg', 2, '0000-00-00 00:00:00'),
+(14, 2, 'http://localhost/alin/photo/146511681714515794317.JPG', 0, '0000-00-00 00:00:00'),
+(15, 2, 'http://localhost/alin/photo/1465116826145141935720141016_211721.jpg', 0, '0000-00-00 00:00:00'),
+(16, 2, 'http://localhost/alin/photo/1465116845146403168614515793136.JPG', 0, '0000-00-00 00:00:00'),
+(17, 2, 'http://localhost/alin/photo/1465116863145141935420140915_111619.jpg', 0, '0000-00-00 00:00:00'),
+(18, 2, 'http://localhost/alin/photo/14651168811464089135makeupgallery_img5.jpg', 0, '0000-00-00 00:00:00'),
+(19, 2, 'http://localhost/alin/photo/14651168891464033171makeupgallery_img1.jpg', 0, '0000-00-00 00:00:00'),
+(24, 2, 'http://localhost/alin/photo/146511692914515798125.jpg', 2, '0000-00-00 00:00:00'),
+(25, 2, 'http://localhost/alin/photo/1465116937145310479120151129_111405.jpg', 2, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -125,23 +132,19 @@ CREATE TABLE `page` (
   `PageName` varchar(255) DEFAULT NULL,
   `Slug` varchar(255) DEFAULT NULL,
   `DetailDesc` text,
-  `DetailDesc1` text,
   `IsEnable` tinyint(4) DEFAULT NULL,
-  `MetaTitle` text,
-  `MetaKeyword` text,
-  `MetaText` text,
   `DateAdded` datetime DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `page`
 --
 
-INSERT INTO `page` (`PageID`, `PageTypeID`, `PageParentID`, `PageName`, `Slug`, `DetailDesc`, `DetailDesc1`, `IsEnable`, `MetaTitle`, `MetaKeyword`, `MetaText`, `DateAdded`, `DateUpdated`) VALUES
-(2, 0, 0, 'Personal Training', 'personal-training', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', 1, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 0, 0, 'Group Training', 'group-training', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', 1, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 0, 0, 'evenings-activity', 'evenings-activity', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '', 1, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `page` (`PageID`, `PageTypeID`, `PageParentID`, `PageName`, `Slug`, `DetailDesc`, `IsEnable`, `DateAdded`, `DateUpdated`) VALUES
+(2, 0, 0, 'Personal Training', 'personal-training', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 0, 0, 'Group Training', 'group-training', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 0, 0, 'evenings-activity', 'evenings-activity', 'fgfhdfgh', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -152,7 +155,7 @@ INSERT INTO `page` (`PageID`, `PageTypeID`, `PageParentID`, `PageName`, `Slug`, 
 CREATE TABLE `pagetype` (
   `PageTypeID` int(11) DEFAULT '0',
   `PageTypeName` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pagetype`
@@ -167,6 +170,34 @@ INSERT INTO `pagetype` (`PageTypeID`, `PageTypeName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `program`
+--
+
+CREATE TABLE `program` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `duration` varchar(255) NOT NULL,
+  `action` varchar(255) NOT NULL,
+  `con` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `program`
+--
+
+INSERT INTO `program` (`id`, `name`, `duration`, `action`, `con`) VALUES
+(1, 'Bridesmaids Party', '+1 week', 'צריכה איפור ליום חתונתה', ''),
+(2, 'Bride Makeup', '+270 day', 'צריכה איפור לברית/ה', ''),
+(3, 'Makeup Alliance', '+12 year', 'צריכה איפור למסיבת בר// בת מצוורה', ''),
+(4, 'Personal Tranning', '+30 day', 'מעוניית בשיעור נוף של סדנא אישית', 'yes'),
+(5, 'Group Tranning', '+90 day', 'מעוניינות בשיעורים נוספים של סדנא קבוצתית', 'yes'),
+(6, 'Evening Makeup', '-1 week', '', ''),
+(7, 'Makeup Bat Mitzvah', '-1 week', '', ''),
+(8, 'Evening activity', '-1 week', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tips`
 --
 
@@ -177,23 +208,23 @@ CREATE TABLE `tips` (
   `TipsType` tinyint(4) NOT NULL,
   `DateAdded` datetime NOT NULL,
   `DateUpdate` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tips`
 --
 
 INSERT INTO `tips` (`TipsID`, `MemberID`, `Desc`, `TipsType`, `DateAdded`, `DateUpdate`) VALUES
-(1, 0, 'sddsadas', 1, '2015-12-23 13:08:36', '0000-00-00 00:00:00'),
-(4, 0, 'dasdasdasdasdasdasdasd', 2, '2015-12-23 13:11:04', '0000-00-00 00:00:00'),
-(3, 0, 'asdasd', 1, '2015-12-23 13:08:38', '0000-00-00 00:00:00'),
-(5, 0, 'asdasdasdnail', 2, '2015-12-23 13:11:08', '0000-00-00 00:00:00'),
-(6, 0, 'Care TipsCare TipsCare TipsCare TipsCare TipsCare TipsCare TipsCare TipsCare Tips', 3, '2015-12-23 13:12:46', '0000-00-00 00:00:00'),
-(7, 0, 'sdasdasdasdasdasdasdasd', 1, '2015-12-23 16:28:06', '0000-00-00 00:00:00'),
-(13, 2, '×™×™×™×™', 3, '2015-12-27 01:33:44', '0000-00-00 00:00:00'),
-(8, 2, '×œ×œ×›×ª ×œ×™×©×•×Ÿ ×ž×•×§×“×', 1, '2015-12-26 17:34:51', '0000-00-00 00:00:00'),
-(12, 2, '×œ×™×©×•×Ÿ ×˜×•×‘', 3, '2015-12-27 01:13:56', '0000-00-00 00:00:00'),
-(14, 2, 'fffffffffffffffffffffffffff', 3, '2015-12-27 01:55:39', '0000-00-00 00:00:00');
+(8, 2, 'את ממש לא חייבת להיות מאפרת מקצועית כדי להבין את ההיגיון הפשוט של תורת האיפור: צבע כהה מקטין, משקיע ומקרב. צבע בהיר מאיר, מבליט ומרחיק. זה אולי לא משהו לשיחת סלון, אבל מדובר באינפורמציה ששווה הון. איך מתרגמים אותה למציאות? יש לך עיניים בולטות שאת ממש לא אוהבת? התאפרי בצלליות כהות יותר. אם עינייך קטנות, השקיעי בגוונים בהירים שיפתחו ויגדילו את מבנה העין.', 1, '2016-06-05 10:57:59', '0000-00-00 00:00:00'),
+(12, 2, 'נכון את תמיד מורחת לק כשהאצבעות שלך מופנות החוצה? אז מתברר שהזווית הטובה ביותר למשיחת לק היא כאשר המרפק מכופף ב-90 מעלות, וכף היד נחה על משטח יציב ומופנית אלייך.', 2, '2016-06-05 10:59:14', '0000-00-00 00:00:00'),
+(9, 2, 'למאפרים מקצועיים יש לא מעט טריקים, אחד מהם הוא הפיכתך לזוהרת במיוחד. איך? בעזרת נקודות של אור. הנקודות פותחות ומאירות את הפנים והעיניים ומגביהים את עצם הגבה. איך עושים את זה? קחי צללית בהירה (או עפרון לבן אם יש לך) ומרחי על הזווית הפנימית שבין האף והעין. הניחי טיפה גם על עצם הגבה ועל עצמות הלחיים והרקה. זה ייצור אשליה של עין גדולה יותר ופנים זוהרות.', 1, '2016-06-05 10:58:11', '0000-00-00 00:00:00'),
+(10, 2, 'בין אם את חושבת שהגבות שלך מדוללות וחסרות צבע, ובין אם הן באמת כאלה, יש דרך לעבות את הגבות, מבלי להיראות כמו פיירו: לצבוע אותן בעזרת צלליות. בניגוד לעיפרון עיניים שעלול להותיר גוון כהה מדי ומראה נוקשה, הצללית – אם היא מונחת בעדינות – משווה לגבה מראה טבעי ולא קודר. חשוב להתאים את גוון הצלליות לגוון השיער ולהקפיד שגוון הגבות יהיה מעט יותר בהיר יותר מגוון השיער.', 1, '2016-06-05 10:58:20', '0000-00-00 00:00:00'),
+(11, 2, 'במידה שאת לא מעוניינת למרוח לק, אבל כן רוצה להיראות סופר מטופחת, את יכולה לנסות באף מקצועי – אותו מלבן עם שטח פנים אפור חלק, שיוצר ברק עז על הציפורניים. יוליה מעדכנת אותנו שליידיז איטלקיות אמיתיות אינן מורחות לק, אלא עושות מניקור מוקפד ומותירות את הציפורניים עירומות וחלקות למשעי.', 2, '2016-06-05 10:58:59', '0000-00-00 00:00:00'),
+(13, 2, 'לק זה הדבר שהכי מעניין אותנו במניקור, והשלב שהכי קשה לעשות אותו בקלאס. ברוב המקרים זה יוצא עקום למדי. לפני הלק הצבעוני מומלץ להניח שכבת בסיס שקופה. היא מגנה על הציפורן מפני חדירת הצבע והצהבה. מיד אחרי את יכולה למרוח את הלק הצבעוני, בשביל לחדש את הלק אחרי יום יומיים, מרחי את שכבת הסיום השקופה שוב. היא מרעננת את המראה ושומרת על הלק.', 2, '2016-06-05 10:59:20', '0000-00-00 00:00:00'),
+(19, 2, ' כשהשפתיים שלך יבשות, הדבר האחרון שאת צריכה לעשות זה ללקק אותן. ברגע שאת מעבירה עליהן את הלשון, הרוק רק מייבש אותן עוד יותר. ונגד שפתיים סדוקות באמת שאין מה לעשות. מה עושים? אם אין לך נטייה ליובש מוגבר אז שפתון עם אחוזי לחות גבוהים יעשה את העבודה. אם את מהמתקלפות, אז עדיף ללכת על מוצר ייעודי ולמשוך אותו על שפתייך אחת לשעתיים.', 3, '2016-06-05 11:00:40', '0000-00-00 00:00:00'),
+(16, 2, 'את תקראי לזה תרופת סבתא, אנחנו נקרא לזה עוד כסף לבגדים: במקום לקנות פילינג בים כסף, את יכולה פשוט להשתמש במה שיש לך במקרר. העיקרון הוא לשלב בין חומר גרגירי, כמו סוכר, עם חומר נוזלי ומאחד. קבלי מתכון: ערבבי כף שמן זית, כף סוכר, כף מיץ לימון ומעט דבש, מרחי על הפנים, שפשפי קלות והרי לך פילינג חינמי (או רוטב חינני לסלט).', 3, '2016-06-05 11:00:19', '0000-00-00 00:00:00'),
+(17, 2, 'על אף הסכנה להישמע כמו פטיפון שבור, אין מנוס מלומר זאת: מקדם הגנה ומסנן קרינה צריכים להיות החברים הכי טובים שלך בכל עונות השנה. גם בחורף. אם את עייפה מלמרוח על עצמך אינספור שכבות בבוקר (קרם לחות, מייק אפ, פודרה ומקדם הגנה), זכרי שכמעט כל לחות ומייק אפ מכילים מקדם הגנה, וזה אמור להספיק. הקפידי לרכוש את אלו שיגנו עלייך מפני השמש ולא רק מפני חצ''קונים.', 3, '2016-06-05 11:00:27', '0000-00-00 00:00:00'),
+(18, 2, 'קרם לחות את מורחת כל יום נכון? נכון. אז בזמן שאת משקיעה בלחיים, בסנטר ובמצח, אולי כדאי שתשימי לב גם לצוואר – החלק שמחזיק את כל הקונסטרוקט המפואר שנקרא הפרצוף שלך. גם הוא זקוק ללחות שתאפשר לו גמישות ותאט את הקמטוטים העתידים להגיע, מה גם שיש לו נטייה להזדקן לפני עור הפנים והגוף, כך שקרם מזין ייעודי לצוואר הוא בכלל בבחינת ברכה.', 3, '2016-06-05 11:00:33', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -214,14 +245,7 @@ CREATE TABLE `usr` (
   `Remark` text,
   `DateAdded` datetime DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `usr`
---
-
-INSERT INTO `usr` (`UserID`, `UserTypeID`, `CreatedBy`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `IsEnable`, `Remark`, `DateAdded`, `DateUpdated`) VALUES
-(1, '3', 0, 'zoya', 'shaulove', 'zoyash', 'zoya.shaulove@gmail.com', 'zoizoish', 1, NULL, NULL, '0000-00-00 00:00:00');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -236,14 +260,17 @@ CREATE TABLE `video` (
   `Type` tinyint(4) NOT NULL,
   `DateAdded` datetime NOT NULL,
   `DateUpdate` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `video`
 --
 
 INSERT INTO `video` (`VideoID`, `MemberID`, `Path`, `Type`, `DateAdded`, `DateUpdate`) VALUES
-(1, 0, 'http://localhost/alin-makeup/video/14508812211450877262movie.mp4', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 2, 'http://localhost/alin/video/146505937714628889711.mp4', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 2, 'http://localhost/alin/video/14650593852.mp4', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 2, 'http://localhost/alin/video/14650593974.mp4', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 2, 'http://localhost/alin/video/14650594033.mp4', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -257,66 +284,26 @@ CREATE TABLE `website` (
   `URL` varchar(255) DEFAULT NULL,
   `CompanyName` varchar(255) DEFAULT NULL,
   `Address1` varchar(255) DEFAULT NULL,
-  `Address2` varchar(255) DEFAULT NULL,
-  `Address3` varchar(255) DEFAULT NULL,
   `Postcode` varchar(255) DEFAULT NULL,
   `Phone` varchar(255) DEFAULT NULL,
   `Fax` varchar(255) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
-  `Image1` varchar(255) DEFAULT NULL,
-  `Image2` varchar(255) DEFAULT NULL,
-  `Image3` varchar(255) DEFAULT NULL,
-  `ILink1` varchar(255) NOT NULL,
-  `ILink2` varchar(255) NOT NULL,
-  `ShortDesc` text,
-  `DetailDesc` text,
   `IsEnable` tinyint(4) DEFAULT NULL,
   `Priority` int(11) DEFAULT '0',
   `MetaTitle` text,
   `MetaKeyword` text,
-  `MetaText` text,
-  `GoogleVerifyCode` text,
-  `GoogleAnalyticsCode` text,
-  `FacebookUrl` varchar(255) NOT NULL,
-  `TwitterUrl` varchar(255) NOT NULL,
-  `GooglePlusUrl` varchar(255) NOT NULL,
-  `LinkedInUrl` varchar(255) NOT NULL,
-  `YoutubeUrl` varchar(255) NOT NULL,
-  `PintrestUrl` varchar(255) NOT NULL,
   `Remark` text,
   `NOH` int(11) DEFAULT NULL,
   `DateAdded` datetime DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `website`
 --
 
-INSERT INTO `website` (`WebsiteID`, `WebsiteName`, `URL`, `CompanyName`, `Address1`, `Address2`, `Address3`, `Postcode`, `Phone`, `Fax`, `Email`, `Image1`, `Image2`, `Image3`, `ILink1`, `ILink2`, `ShortDesc`, `DetailDesc`, `IsEnable`, `Priority`, `MetaTitle`, `MetaKeyword`, `MetaText`, `GoogleVerifyCode`, `GoogleAnalyticsCode`, `FacebookUrl`, `TwitterUrl`, `GooglePlusUrl`, `LinkedInUrl`, `YoutubeUrl`, `PintrestUrl`, `Remark`, `NOH`, `DateAdded`, `DateUpdated`) VALUES
-(1, 'alinmackup', 'http://localhost/alinmakeup/', 'alinmakeup', 'Address line one', 'Address Line Two', 'London', 'TW4 6JQ', '0101 1010', 'dasdasd', 'sales@alignmackup.com', '', '', '', '', '', '', '', 2, 0, 'Welcome to alinmakeup', 'Online alinmakeup', 'Meta Text', ' Google Verify Code\r\n', 'Google Analytics Code', 'http://facebook.com/abc', 'http://twitter.com/abc', 'http://gplus.com/abc', 'http://linkedin.com/abc', 'http://youtube.com/abc', 'http://pintrest.com/abc', '', NULL, '2011-09-21 05:14:56', '2015-12-23 14:16:13');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `website_slide`
---
-
-CREATE TABLE `website_slide` (
-  `WebsiteSlideID` int(11) NOT NULL,
-  `WebsiteID` int(11) DEFAULT '0',
-  `SlideName` varchar(255) DEFAULT NULL,
-  `URL` varchar(255) DEFAULT NULL,
-  `SlideImage1` varchar(255) DEFAULT NULL,
-  `SlideImage2` varchar(255) NOT NULL,
-  `DetailDesc` text,
-  `IsEnable` tinyint(4) DEFAULT NULL,
-  `Priority` int(11) DEFAULT '0',
-  `Remark` text,
-  `NOH` int(11) DEFAULT NULL,
-  `DateAdded` datetime DEFAULT NULL,
-  `DateUpdated` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `website` (`WebsiteID`, `WebsiteName`, `URL`, `CompanyName`, `Address1`, `Postcode`, `Phone`, `Fax`, `Email`, `IsEnable`, `Priority`, `MetaTitle`, `MetaKeyword`, `Remark`, `NOH`, `DateAdded`, `DateUpdated`) VALUES
+(1, 'alinmackup', 'http://localhost/alinmakeup/', 'alinmakeup', 'Address line one', '89023', '0547777777', '0547777777', 'alinmakeup@gmail.com', 2, 0, 'Welcome to alinmakeup', 'Online alinmakeup', '', NULL, '2011-09-21 05:14:56', '2015-12-23 14:16:13');
 
 -- --------------------------------------------------------
 
@@ -327,7 +314,7 @@ CREATE TABLE `website_slide` (
 CREATE TABLE `_usertype` (
   `UserTypeID` int(11) NOT NULL,
   `UserType` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `_usertype`
@@ -361,6 +348,12 @@ ALTER TABLE `page`
   ADD PRIMARY KEY (`PageID`);
 
 --
+-- Indexes for table `program`
+--
+ALTER TABLE `program`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `usr`
 --
 ALTER TABLE `usr`
@@ -373,11 +366,14 @@ ALTER TABLE `website`
   ADD PRIMARY KEY (`WebsiteID`);
 
 --
--- Indexes for table `website_slide`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `website_slide`
-  ADD PRIMARY KEY (`WebsiteSlideID`);
 
+--
+-- AUTO_INCREMENT for table `program`
+--
+ALTER TABLE `program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

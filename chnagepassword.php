@@ -38,7 +38,7 @@ Class CPassword
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
         if ($this->IsValid())
 		{
-			$NPassword = ReplaceEmpty("newpassword","");
+			$NPassword = ReplaceEmpty("newpassword","");//sha($NPassword)
             $SQL = "update member set password = '$NPassword' where MemberID = $SAWMemberID";
             GetRS($SQL);	
             return true;

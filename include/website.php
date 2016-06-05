@@ -8,24 +8,18 @@ class Site {
 	public $CompanyName;//Company Name
 	//address and Postcodeof Company
 	public $Address1;
-	public $Address2;
-	public $Address3;
 	public $Postcode;
 	
 	//website number
 	public $Phone;
 	public $Fax;
 	public $Email;//email of Company
-	public $Image1;
-	public $Image2;
-	public $Image3;
-	public $ShortDesc;//description of website
-	public $DetailDesc;
+
 	public $IsEnable;
 	public $Priority;
 	public $MetaTitle;
 	public $MetaKeyword;
-	public $MetaText;
+
 
 	public $Brands;
 	public $Theme;
@@ -34,7 +28,6 @@ class Site {
 	public $Sort;
 	public $Ord;
 	public $View;
-	public $GoogleAnalyticsCode;
 
 	public $DataDir;
 	public $DocRoot;
@@ -62,25 +55,18 @@ class Site {
 			$this->URL = $rw['URL'];
 			$this->CompanyName = $rw['CompanyName'];
 			$this->Address1 = $rw['Address1'];
-			$this->Address2 = $rw['Address2'];
-			$this->Address3 = $rw['Address3'];
+
 			$this->Postcode = $rw['Postcode'];
 			$this->Phone = $rw['Phone'];
 			$this->Fax = $rw['Fax'];
 			$this->Email = $rw['Email'];
-			$this->Image1 = $rw['Image1'];
-			$this->Image2 = $rw['Image2'];
-			$this->Image3 = $rw['Image3'];
-			$this->ShortDesc = $rw['ShortDesc'];
-			$this->DetailDesc = $rw['DetailDesc'];
+
 			$this->IsEnable = $rw['IsEnable'];
 			$this->Priority = $rw['Priority'];
 			$this->MetaTitle = $rw['MetaTitle'];
 			$this->MetaKeyword = $rw['MetaKeyword'];
-			$this->MetaText = $rw['MetaText'];
+
 			$this->Remark = $rw['Remark'];	
-			$this->GoogleVerifyCode = $rw['GoogleVerifyCode'];	
-			$this->GoogleAnalyticsCode = $rw['GoogleAnalyticsCode'];	
 			
 			//sets dirctions for the path of the website
 			$this->Theme = "makeupProject";

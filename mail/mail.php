@@ -1,6 +1,12 @@
 <?php
 	//a proper connection to MySQL was made
 	$con=mysqli_connect("localhost","root","","alinmakeup");
+	
+	
+	// Set definition data to support Hebrew
+	mysqli_set_charset($con, "utf8");
+	
+	
 	//select from table "member" where customer Email are the samw
     $SQL = "select * from `member` where Email = '".$_REQUEST['email']."'";
 	
@@ -49,7 +55,8 @@
 
 	//send the message, check for errors
 		if (!$mail->send()) {
-			echo "mail failed";
+			// if the mail failed
+			header('location:../forget-password.php?q=0');
 		}
 		else {
 				header('location:../forget-password.php?q=1');

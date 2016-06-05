@@ -29,11 +29,16 @@ Class ContatUs
 			<div class="rowhead">
 				<h2>צור קשר</h2>
 			</div>
-			<?php if(isset($_REQUEST['q']))
+			<?php if(isset($_REQUEST['q']) && $_REQUEST['q']==1)
 			{// if mail was sended q will be true for messeg "Artist will contact you shortly"
 				echo '<b><font color=red>לקוח יקר פרטייך התקבלו, ניצור איתך קשר בהקדם האפשרי</font></b>';
-				
-			}?>
+			}
+			// if the mail failed
+			if(isset($_REQUEST['q']) && $_REQUEST['q']==0)
+			{
+				echo '<b><font color=red>משהו השתבש , נסה שנית</b></font>';
+			}
+			?>
 			<!-- send the details of the customer to contact-us.php for sending mail contaction -->
 			<form action="mail/contact-us.php" method="post"> 
 				<div class="contactpage_intro">
