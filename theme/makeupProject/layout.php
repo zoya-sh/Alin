@@ -6,18 +6,18 @@ global $Site;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<!-- represents a character encoding declaration -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- This stops the user from zooming into your site.-->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	
     <title>Alin-Makeup-Artist</title>
-    <!-- faveicon start -->
-    <link rel="icon" type="image/png" href="<?php echo $Site->ThemePath ?>images/faveicon.png" sizes="16x16">
+    <!-- faveicon start-  an icon associated with a URL that is variously displayed, as in a browser's address bar or next to the site name in a bookmark list
+    <link rel="icon" type="image/png" href="<?php echo $Site->ThemePath ?>images/faveicon.png" sizes="16x16">.-->
     <!-- faveicon close// -->
     <!-- style start -->
-    <link href="<?php echo $Site->ThemePath ?>css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $Site->ThemePath ?>css/mainslider.css" />
-    <link href="<?php echo $Site->ThemePath ?>css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $Site->ThemePath ?>css/loader.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $Site->ThemePath ?>css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $Site->ThemePath ?>css/style.css" rel="stylesheet" type="text/css" /><!-- css for text  -->
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $Site->ThemePath ?>css/mainslider.css" /><!-- css for main slider-->
     <!-- style close// -->
     
     <!-- main-script -->
@@ -44,7 +44,7 @@ function PrintTopHeader(){
 global $Site;
 global $SAWMemberID;
 $SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-?>		
+?>	
 <div class="header"><!-- header start -->
 		<div class="logo"><a href="index.php"><img src="<?php echo $Site->ThemePath ?>images/logo.png" alt="" /></a></div>
         <div id='menu'><!-- menu start -->
@@ -52,15 +52,14 @@ $SAWMemberID  = @$_SESSION['SAWMemberID'] ;
                <li class=''><a href='index.php' class="menuactive">דף הבית</a></li>
                <li class=''><a href='#' class="">גלריה</a>
                	<ul>
-                	<li><a href="makeup-gallery.php">איפור</a></li>
-                    <li><a href="nails-gallery.php">ציפורניים</a></li>
+                	<li><a href="makeup-gallery.php">גלריית איפור</a></li>
+                    <li><a href="nails-gallery.php">גלריית ציפורניים</a></li>
                 </ul>
                </li>
                <li class=''><a href='#' class="">סדנאות</a>
                	<ul>
-                	<li><a href="personal-training.php">סדנא אישית</a></li>
-                    <li><a href="group-training.php">סדנא קבוצתית</a></li>
-                    <li><a href="evenings-activity.php">ערבי פעילות</a></li>
+                	<li><a href="personal-training.php">סדנה אישית</a></li>
+                    <li><a href="group-training.php">סדנה קבוצתית</a></li>
                 </ul>
                </li>
                <li class=''><a href='#' class="">טיפים</a>
@@ -73,11 +72,11 @@ $SAWMemberID  = @$_SESSION['SAWMemberID'] ;
                <li class=''><a href='do-it-by-yourself.php' class="">עשה בעצמך!</a></li>
                <li class=''><a href='makeup-artist-profile.php' class="">פרופיל</a>
                	<ul>
-                	<li><a href="makeup-artist-profile.php">התחבר</a></li>
-                   <?php if(!isset($SAWMemberID)){ ?> <li><a href="join-us.php">הצטרף</a></li> <?php } ?>
+                	<li><a href="makeup-artist-profile.php">התחברות</a></li>
+                   <?php if(!isset($SAWMemberID)){ ?> <li><a href="join-us.php">הצטרפות</a></li> <?php } ?>
                 </ul>
                </li>
-               <li class=''><a href='contact-us.php' class="">צור קשר</a></li>
+               <li class=''><a href='contact-us.php' class="">יצירת קשר</a></li>
             </ul>
         </div><!-- menu close// -->
 	</div><!-- header close -->
@@ -151,27 +150,5 @@ function CLoseBody(){
 </div>
 </body>
 <?php	
-}
-function watermark_text($oldimage_name, $new_image_name){
-    global $font_path, $font_size, $water_mark_text_1, $water_mark_text_2;
-	$image_path = "";
-	$font_path = "";
-	$font_size = 15;  // in pixcels
-	//$water_mark_text_1 = "9";
-	$water_mark_text_2 = "";
-    list($owidth,$oheight) = getimagesize($oldimage_name);
-    $width = $owidth ;    
-    $height = $oheight ;  
-    $image = imagecreatetruecolor($width, $height);
-    $image_src = imagecreatefromjpeg($oldimage_name);
-    imagecopyresampled($image, $image_src, 0, 0, 0, 0, $width, $height, $owidth, $oheight);
-   // $black = imagecolorallocate($image, 0, 0, 0);
-    $blue = imagecolorallocate($image, 79, 166, 185);
-   // imagettftext($image, $font_size, 0, 30, 190, $black, $font_path, $water_mark_text_1);
-    imagettftext($image, $font_size, 0, 68, 190, $blue, $font_path, $water_mark_text_2);
-    imagejpeg($image, $new_image_name, 100);
-    imagedestroy($image);
-    unlink($oldimage_name);
-    return true;
 }
 ?>

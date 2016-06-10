@@ -45,11 +45,12 @@ Class MackupCustomer
 	//add user to data base
 	function Add()
 	{	
-		$MPhoneNumber  = GetID("mcustomer","MCustomerID");
-		$MemberID =  @$_SESSION['SAWMemberID'] ;
-		$date=date('Y-m-d');
+		
+		$MPhoneNumber  = GetID("mcustomer","MCustomerID");//select max MCustomerID from mcustomer table means take the next inctimant idNumber for saving new customer 
+		$MemberID =  @$_SESSION['SAWMemberID'] ;//for only artist with MemberID=2 can add new customer to the databse
+		$date=date('Y-m-d');//data of setting customer to the databse
 			//save user on data base 
-		$SQL = "insert into mcustomer (date,MCustomerID, MemberID,  FirstName, LastName ,  PhoneNumber ,  DOB , MakeupType, FacialStructure, SkinType ) values ('$date',$MPhoneNumber, '$MemberID',  '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->DOB', '$this->MakeupType', '$this->FacialStructure', '$this->SkinType')";
+		$SQL = "insert into mcustomer (date ,MCustomerID, MemberID,  FirstName, LastName,  PhoneNumber,  DOB, MakeupType, FacialStructure, SkinType ) values ('$date', $MPhoneNumber, '$MemberID', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->DOB', '$this->MakeupType', '$this->FacialStructure', '$this->SkinType')";
 		GetRS($SQL);	
 		return true;
 	}
@@ -129,7 +130,7 @@ Class MackupCustomer
 
                         <div class="makeupprofilepage_intro_col_row">
                             <!-- makeupprofilepage_intro_col_row start -->
-                            <input type="submit" value="ok" class="custom_btn" />
+                            <input type="submit" value="שמור" class="custom_btn" />
                         </div>
                         <!-- makeupprofilepage_intro_col_row close// -->
                     </div>

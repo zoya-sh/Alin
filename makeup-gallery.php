@@ -102,7 +102,7 @@ Class MakeupGallery
 	//delete makeup photos from dataBase
 	function Remove($GID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//IsNail = 0 for makeup gallery
 		$SQL = "delete from mgallery where MGalleryID = $GID and IsNail = 0 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;	
@@ -133,7 +133,8 @@ Class MakeupGallery
 					<label>הוספת תמונה</label>
 					<!--the  method is post, the action of upload photo is on makeup-gallery.php -->
 					<form action="makeup-gallery.php" method="POST" enctype="multipart/form-data">
-						<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" -->
+						<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" means 
+						after secting a photo "profilepic-1"=to some number... 1465116 in our case-->
 						<input type="file" name="profilepic-1" class="custom_input" />
 						<input type="submit" value="OK" class="custom_btn" />
 						<input type="hidden" name="mode" value="photoupload" >
@@ -152,8 +153,8 @@ Class MakeupGallery
 			{
 				$Count = $Count + 1;			
 		?>
-				
-				<li><span><a href="#" data-title="pic" data-desc="pic" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
+				<!--<li><span><a href="#" data-title="pic" data-desc="pic" data-src="-->
+				<li><span><a href="#" data-title="" data-desc="" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
 				<?php if($SAWMemberID == $rw['MemberID'])
 				{ ?>
 					<a href="<?php echo $Site->AURL ?>makeup-gallery.php?mode=remove&id=<?php echo $rw['MGalleryID'] ?>"  >removed</a>

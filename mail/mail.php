@@ -16,7 +16,10 @@
 	$row=mysqli_fetch_array($result);
 	
 	//get the custpmer password to send
-	$message="הסיסמא שלך היא : ".$row['Password'];
+	$message="<table><tr><th>לקוח/ יקר/ה הסיסמא שלך היא</th></tr>";
+	$message=$message."<tr><th>".$row['Password']."</th></tr>";
+	$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
+	
     require 'PHPMailerAutoload.php';
 
 	//Create a new PHPMailer instance
@@ -50,7 +53,8 @@
 	
 		$mail->addAddress($_REQUEST['email'],'dear reciept');
 	//Set the subject line
-		$mail->Subject = 'Recover password';
+		//$mail->Subject = 'Recover password';
+		$mail->Subject ="=?UTF-8?B?".base64_encode("שחזור סיסמא")."?=";
 		$mail->msgHTML($message);
 
 	//send the message, check for errors

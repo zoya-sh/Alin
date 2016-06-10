@@ -6,6 +6,7 @@
 	$message=$message."<tr><th>ציפורניים</th><td>".$_REQUEST['nm1']."</td></tr>";
 	$message=$message."<tr><th>מייקאפ</th><td>".$_REQUEST['nm2']."</td></tr>";
 	$message=$message."<tr><th>גבות ושעוות</th><td>".$_REQUEST['nm3']."</td></tr></table>";
+	$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
 	
     require 'PHPMailerAutoload.php';
 		
@@ -40,7 +41,8 @@
 		
 			$mail->addAddress('alin.makeup.artist@gmail.com','dear Artist');
 		//Set the subject line
-			$mail->Subject = 'Customer details';
+			//$mail->Subject = 'Customer details';
+			$mail->Subject ="=?UTF-8?B?".base64_encode("בקשת לקוח/ה לטיפול מאפרת")."?=";
 			$mail->msgHTML($message);
 
 		//send the message, check for errors

@@ -44,6 +44,7 @@ require 'PHPMailerAutoload.php';
 				$message=$message."<tr><th>מבנה פנים</th><td>".$row['FacialStructure']."</td></tr>";
 				$message=$message."<tr><th>סוג עור</th><td>".$row['SkinType']."</td></tr>";
 				$message=$message."<tr><th>המלצה</th><td>".$row1['action']."</td></tr></table>";
+				$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
 		
    
 					//Create a new PHPMailer instance
@@ -77,7 +78,8 @@ require 'PHPMailerAutoload.php';
 					
 						$mail->addAddress('alin.makeup.artist@gmail.com','dear Artist');
 					//Set the subject line
-						$mail->Subject = 'welcome';
+						//$mail->Subject = 'welcome';
+						$mail->Subject ="=?UTF-8?B?".base64_encode("פירטיי הלקוח")."?=";
 						$mail->msgHTML($message);
 	
 					
@@ -104,6 +106,7 @@ require 'PHPMailerAutoload.php';
 			$message="<table><tr><td>שימרי על הלקוחות שלך<tr><th>שם הלקוח</th><td>".$row['FirstName']."&nbsp;".$row['LastName']."</td></tr>";
 			$message=$message."<tr><th>מספר טלפון</th><td>".$row['PhoneNumber']."</td></tr>";
 			$message=$message."<tr><th>מזל טוב</th><td> <th>היום יום הולדת ללקוחה היקרה שלך, ברכי אותה!</th></td></tr></table>";
+			$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
 	
 					//Create a new PHPMailer instance
 						$mail = new PHPMailer();
@@ -136,7 +139,8 @@ require 'PHPMailerAutoload.php';
 					
 						$mail->addAddress('alin.makeup.artist@gmail.com','dear Artist');
 					//Set the subject line
-						$mail->Subject = 'welcome';
+						///$mail->Subject = 'welcome';
+						$mail->Subject ="=?UTF-8?B?".base64_encode("מזל טוב")."?=";
 						$mail->msgHTML($message);
 
 					

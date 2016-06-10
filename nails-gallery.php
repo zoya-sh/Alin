@@ -101,7 +101,7 @@ Class NailsGallery
 	//delete nalis photos from dataBase
 	function Remove($GID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//IsNail = 2 for nail gallery
 		$SQL = "delete from mgallery where MGalleryID = $GID and IsNail = 2 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;	
@@ -153,7 +153,7 @@ Class NailsGallery
 				$Count = $Count + 1;
 		?>
 			
-				<li><span><a href="#" data-title="pic" data-desc="pic" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
+				<li><span><a href="#" data-title="" data-desc="" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
 				<?php if($SAWMemberID == $rw['MemberID'])
 				{ ?>
 					<a href="<?php echo $Site->AURL ?>nails-gallery.php?mode=remove&id=<?php echo $rw['MGalleryID'] ?>">removed</a>
