@@ -43,7 +43,7 @@ Class ContatUs
 			<form action="mail/contact-us.php" method="post"> 
 				<div class="contactpage_intro">
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-						<p>אלין מישייב</p>
+						<p>אלין מישייב </p>
 						<p>alin.makeup.artist@gmail.com</p>
 						<p>0507817770</p>
 					</div><!-- contactpage_intro_row close// -->
@@ -56,48 +56,49 @@ Class ContatUs
 						<input type="text" name="text2" class="custom_input" required/>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-						<label>מס' טלפון:</label>
+						<label>מספר טלפון:</label>
 						<input type="number"  min="1" max="9999999999" name="text3" class="custom_input" required />
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-					<label>ציפורניים: </label>
+					<labelBlack>ציפורניים: </labelBlack>
 					<input type="radio" name="nm1" value="בניה בג'ל" />
-					<label>בניה בג'ל</label>
+					<labelWithe>בניה בג'ל</labelWithe>
 					<input type="radio" name="nm1" value="מילוי בג'ל" />
-					<label>מילוי בג'ל</label>
+					<labelWithe>מילוי בג'ל</labelWithe>
 					<input type="radio" name="nm1" value="בניה באקריל" />
-					<label>בניה באקריל</label>
+					<labelWithe>בניה באקריל</labelWithe><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="nm1" value="מילוי בג'ל" />
-					<label>מילוי באקריל</label>
+					<labelWithe>מילוי באקריל</labelWithe>
 					<input type="radio" name="nm1" value="מילוי באקריל" />
-					<label>בניה מושלבת</label>
+					<labelWithe>בניה מושלבת</labelWithe>
 					<input type="radio" name="nm1" value="מריחת לק ג'ל" />
-					<label>מריחת לק ג'ל</label>
+					<labelWithe>מריחת לק ג'ל</labelWithe>
 					
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-					<label>איפור: </label>
+					<labelBlack>איפור: </labelBlack>
 					<input type="radio" name="nm2" value="איפור ערב" />
-					<label>איפור ערב</label>
+					<labelWithe>איפור ערב</labelWithe>
 					<input type="radio" name="nm2" value="איפור כלה" />
-					<label>איפור כלה</label>
+					<labelWithe>איפור כלה</labelWithe>
 					<input type="radio" name="nm2" value="מסיבת רווקות" />
-					<label>מסיבת רווקות</label>
+					<labelWithe>מסיבת רווקות</labelWithe>
 					<input type="radio" name="nm2" value="איפור לברית/ה" />
-					<label>איפור לברית/ה</label>
+					<labelWithe>איפור לברית/ה</labelWithe><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="nm2" value="איפור לבת מצווה" />
-					<label>איפור לבת מצווה</label>
+					<labelWithe>איפור לבת מצווה</labelWithe>
 					<input type="radio" name="nm2" value="ערבי פעילויות" />
-					<label>ערבי פעילויות</label>
+					<labelWithe>ערבי פעילויות</labelWithe>
 					<input type="radio" name="nm2" value="סדנא אישית" />
-					<label>סדנא אישית</label>
+					<labelWithe>סדנא אישית</labelWithe>
 					<input type="radio" name="nm2"  value="סדנא קבוצתית"/>
-					<label>סדנא קבוצתית</label>
+					<labelWithe>סדנא קבוצתית</labelWithe>
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-					<label>גבות ושעוות: </label>
+					<labelBlack>גבות ושעוות: </labelBlack>
 					<input type="radio" name="nm3" value="גבות ושעוות" />
-					<label>בחירה</label>
+					<labelWithe>בחירה</labelWithe>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
 						<input type="submit" value="שלח" class="custom_btn" />

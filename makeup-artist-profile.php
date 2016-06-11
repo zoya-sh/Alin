@@ -24,7 +24,7 @@ Class Profile
 		?>
 		<div class="ipage artistprofile"><!-- ipage start -->
 			<div class="rowhead">
-				<!-- if user name is the same as a Ccookie we will show user profile -->
+				<!-- if user name is the same as a session we will show user profile -->
 				<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
 					<h2>פרופיל לקוח</h2>
 					<?php
@@ -38,9 +38,10 @@ Class Profile
 				?>
 			</div>
 			<?php
-			$SQL ="select * from member where MemberID = $SAWMemberID";
-			$rs = GetRs($SQL);
-			if($rw = mysql_fetch_array($rs))
+			$SQL ="select * from member where MemberID = $SAWMemberID";//get the line with the user details  where user MemberID
+			//get the line with the user details
+			$rs = GetRs($SQL);// @mysql_query($SQL,$db->cnn) or die(mysql_error());
+			if($rw = mysql_fetch_array($rs))//make array for user details
 			{
 				?>	
 				<div class="artistprofile_intro">
@@ -54,7 +55,7 @@ Class Profile
 							</div>
 						</div>
 						<?php 
-						
+						// user profile 
 						if($_SESSION['SAWProfileType'] == 'user')
 						{
 							$y = 10;
@@ -98,36 +99,36 @@ Class Profile
 							}	
 						}
 							?>
-					</div><!-- user profile - name, phone number email and number of treatment// -->
-					<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
-					<div class="videopage_intro_colr"><!-- videopage_intro_colr start -->
-						<div class="videopage_intro_colr_row1">
-							<p><?php echo $rw['FirstName'] ?>  <?php echo $rw['LastName'] ?></p>
-							<p><?php echo  $rw['TelNo'] ?></p>
-							<p><?php echo  $rw['Email'] ?></p>
+						</div><!-- user profile - name, phone number email and number of treatment// -->
+						<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
+						<div class="videopage_intro_colr"><!-- videopage_intro_colr start -->
+							<div class="videopage_intro_colr_row1">
+								<p><?php echo $rw['FirstName'] ?>  <?php echo $rw['LastName'] ?></p>
+								<p><?php echo  $rw['TelNo'] ?></p>
+								<p><?php echo  $rw['Email'] ?></p>
+								</div>
+							<div class="videopage_intro_colr_row2">	
+								<p>טיפול מס:  <?php echo $rw['Treatment'] ?></p>
 							</div>
-						<div class="videopage_intro_colr_row2">	
-							<p>טיפול מס:  <?php echo $rw['Treatment'] ?></p>
-						</div>
-		
-					</div><!-- videopage_intro_colr close// -->
-					<?php 
-					//if it's artist profile, will show 2 link to different pages:makeup customers, nails customers
-					}
-					elseif($_SESSION['SAWProfileType'] == 'artist')
-					{
-					?>
-						<div style="width:100%">
-						<div class="videopage_intro_coll_bottom" style="width:46%;float:left;margin:5px">
-						<center><b><font color=#8B2252 size=4><a href="nails-costomers.php">לקוחות ציפורניים</a></font></b></center>
-						</div>
-						<div class="videopage_intro_coll_bottom"  style="width:46%;float:left;margin:5px">
-						<center><b><font color=#8B2252 size=4><a href="makup-costomers.php">לקוחות איפור</a></b></font></center>
-						</div>
-						</div>
-					<?php	
-					}
-					?>
+			
+						</div><!-- videopage_intro_colr close// -->
+						<?php 
+						//if it's artist profile, will show 2 link to different pages:makeup customers, nails customers
+						}
+						elseif($_SESSION['SAWProfileType'] == 'artist')
+						{
+						?>
+							<div style="width:100%">
+							<div class="videopage_intro_coll_bottom" style="width:46%;float:left;margin:5px">
+							<center><b><font color=#8B2252 size=4><a href="nails-costomers.php">לקוחות ציפורניים</a></font></b></center>
+							</div>
+							<div class="videopage_intro_coll_bottom"  style="width:46%;float:left;margin:5px">
+							<center><b><font color=#8B2252 size=4><a href="makup-costomers.php">לקוחות איפור</a></b></font></center>
+							</div>
+							</div>
+						<?php	
+						}
+						?>
 				<div class="clear"></div>
 				</div>
 				<?php

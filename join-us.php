@@ -49,7 +49,7 @@ Class JoinUs
 		//if all the details is valid save the user on data base
 		if ($this->IsValid())
 		{
-			$MemberID = GetID("member", "MemberID");
+			$MemberID = GetID("member", "MemberID");//getting last MemberID +1 for adding one more user
 			$DateAdded = gmdate("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
 			$IsEnable = 1;

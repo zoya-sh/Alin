@@ -39,12 +39,31 @@ require 'PHPMailerAutoload.php';
 			//if time duration is passed will send email to makeup artist
 			if(date('Y-m-d')==$finaldate)
 			{
-				$message="<table><tr><td>שימרי על הלקוחות שלך<tr><th>שם הלקוח</th><td>".$row['FirstName']."&nbsp;".$row['LastName']."</td></tr>";
-				$message=$message."<tr><th>מספרה טלפון</th><td>".$row['PhoneNumber']."</td></tr>";
-				$message=$message."<tr><th>מבנה פנים</th><td>".$row['FacialStructure']."</td></tr>";
-				$message=$message."<tr><th>סוג עור</th><td>".$row['SkinType']."</td></tr>";
-				$message=$message."<tr><th>המלצה</th><td>".$row1['action']."</td></tr></table>";
-				$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
+				$message = '<html lang="he-IL">';
+				$message .= '<head><meta charset="utf-8"></head>';
+				$message .= '<body dir="rtl" style="width:97%;margin:10px auto;padding:0;color:#D42D2D;font-size:1em;line-height:1;font-family:Arial,Helvetica,sans-serif;">';
+				$message .= '<div style="border:1px solid #A52A2A;">';
+					$message .= '<div id="header" style="background:#FFE4C4;border-bottom:1px solid #A52A2A;">';
+						$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+						$message .= '<h1>שימרי על הלקוחות שלך</h1>';
+					$message .= '</div>';
+				$message .= '</div>';
+				$message .= '<div style="width:100%;background:#ffffff;">';
+					$message .= '<div style="width:100%;margin-right:20px;">';
+					$message .= '<p></p>';
+						$message=$message."<th>שם הלקוח/ה: </th><td>"."&nbsp;".$row['FirstName']."&nbsp;".$row['LastName']."</td></tr>";
+						$message=$message."<tr><th>מספר טלפון: </th><td>"."&nbsp;".$row['PhoneNumber']."</td></tr>";
+						$message=$message."<tr><th>מבנה פנים: </th><td>"."&nbsp;".$row['FacialStructure']."</td></tr>";
+						$message=$message."<tr><th>סוג עור: </th><td>"."&nbsp;".$row['SkinType']."</td></tr>";
+						$message=$message."<tr><th>המלצה: </th><td>"."&nbsp;".$row1['action']."</td></tr></table>";
+						$message .= '<p></p>';
+					$message .= '</div>';
+				$message .= '</div>';
+				$message .= '<div id="footer" style="background:#FFE4C4;border-top:1px solid #A52A2A;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<a href="http://www.alin-Makeup.co.il" style="font-size:1em;"> חזרה לאתר Alin Makeup Artist ';
+				$message .= '</div></div></div>';
+				$message .= '</body></html>';
 		
    
 					//Create a new PHPMailer instance
@@ -103,11 +122,32 @@ require 'PHPMailerAutoload.php';
 		//if time duration is passed will send email to makeup artist about birthday of customer
 		if(date('m-d')==$bday)
 		{	
-			$message="<table><tr><td>שימרי על הלקוחות שלך<tr><th>שם הלקוח</th><td>".$row['FirstName']."&nbsp;".$row['LastName']."</td></tr>";
-			$message=$message."<tr><th>מספר טלפון</th><td>".$row['PhoneNumber']."</td></tr>";
-			$message=$message."<tr><th>מזל טוב</th><td> <th>היום יום הולדת ללקוחה היקרה שלך, ברכי אותה!</th></td></tr></table>";
-			$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
-	
+			
+			$message = '<html lang="he-IL">';
+				$message .= '<head><meta charset="utf-8"></head>';
+				$message .= '<body dir="rtl" style="width:97%;margin:10px auto;padding:0;color:#0000cc;font-size:1em;line-height:1;font-family:Arial,Helvetica,sans-serif;">';
+				$message .= '<div style="border:1px solid #0EABAB;">';
+					$message .= '<div id="header" style="background:#99ccff;border-bottom:1px solid #0EABAB;">';
+						$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+						$message .= '<h1>יום הולדת ללקוח/ה</h1>';
+					$message .= '</div>';
+				$message .= '</div>';
+				$message .= '<div style="width:100%;background:#ffffff;">';
+					$message .= '<div style="width:100%;margin-right:20px;">';
+						$message=$message."<tr><th>שם הלקוח/ה: </th><td>"."&nbsp;".$row['FirstName']."&nbsp;".$row['LastName']."</td></tr>";
+						$message=$message."<tr><th>מספר טלפון: </th><td>"."&nbsp;".$row['PhoneNumber']."</td></tr></table>";
+						$message=$message."<th>מזל טוב היום יום ההולדת ללקוח/ה היקר/ה שלך ברכי אותה</th>";
+						$message .= '</div>';
+					$message .= '</div>';		
+					$message .= '<p>';
+					$message .= '<img src="https://srv214.gif.co.il/images/224388bday999.gif" style="width:auto;height:auto;border:1px solid #ffffff;" />';
+					$message .= '</p>';
+				$message .= '<div id="footer" style="background:#99ccff;border-top:1px solid #0EABAB;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<a href="http://www.alin-Makeup.co.il" style="font-size:1em;"> חזרה לאתר Alin Makeup Artist ';
+				$message .= '</div></div></div>';
+				$message .= '</body></html>';
+
 					//Create a new PHPMailer instance
 						$mail = new PHPMailer();
 					//Tell PHPMailer to use SMTP

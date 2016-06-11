@@ -744,10 +744,21 @@ a
 {margin:20px 0 0 0;}
 
 .contactpage_intro_row p
-{color:#ad7344; font-weight:bold; font-size:20px;}
+{color:#CC0066; font-weight:bolder; font-size:22px;}
 
 .contactpage_intro_row label
-{color:#808080; font-weight:bold; font-size:20px;}
+{color:#404040; font-weight:bolder; font-size:20px;}
+
+.contactpage_intro_row label1
+{color:#808080; font-weight:bolder; font-size:20px;}
+
+.contactpage_intro_row labelWithe
+{color:#ffffff; font-weight:bolder; font-size:20px;}
+.contactpage_intro_row labelB
+{color:#000000; font-weight:bolder; font-size:20px;}
+
+.contactpage_intro_row labelBlack
+{color:#5F3714; font-weight:bolder; font-size:20px;}
 
 .custom_input
 {padding:7px; border-radius:15px; background:#fff; border:2px solid #ad7344; width:300px; margin:0 5px 0 0;}

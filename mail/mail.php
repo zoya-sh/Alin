@@ -15,10 +15,29 @@
 	//fetches a result row as an associative array
 	$row=mysqli_fetch_array($result);
 	
-	//get the custpmer password to send
-	$message="<table><tr><th>לקוח/ יקר/ה הסיסמא שלך היא</th></tr>";
-	$message=$message."<tr><th>".$row['Password']."</th></tr>";
-	$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
+	//get the custpmer password to send	
+	$message = '<html lang="he-IL">';
+	$message .= '<head><meta charset="utf-8"></head>';
+	$message .= '<body dir="rtl" style="width:97%;margin:10px auto;padding:0;color:#202020;font-size:1em;line-height:1;font-family:Arial,Helvetica,sans-serif;">';
+		$message .= '<div style="border:1px solid #009999;">';
+			$message .= '<div id="header" style="background:#66ffb2;border-bottom:1px solid #009999;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<h1>שחזור סיסמא לאתר</h1>';
+				$message .= '</div>';
+			$message .= '</div>';
+			$message .= '<div style="width:100%;background:#ffffff;">';
+				$message .= '<div style="width:100%;margin-right:20px;">';			
+						$message=$message."<tr><th>לקוח/ה יקר הסיסמא שלך היא:</th><td>"."&nbsp;".$row['Password']."</th></tr>";
+						$message .= '<p><tr><th>נשמח לראותך באתר :)</th><td></p>';
+						$message .= '<p></p>';
+				$message .= '</div>';
+			$message .= '</div>';
+			$message .= '<div id="footer" style="background:#66ffb2;border-top:1px solid #009999;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<a href="http://www.alin-Makeup.co.il" style="font-size:1em;"> חזרה לאתר Alin Makeup Artist ';
+			$message .= '</div></div></div>';
+	$message .= '</body></html>';
+	
 	
     require 'PHPMailerAutoload.php';
 

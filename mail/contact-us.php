@@ -1,12 +1,29 @@
 <?php
 
-	$message="<table><tr><th>פירטי הלקוח ליצירת קשר:</th></tr>";
-	$message=$message."<th>שם הלקוח</th><td>".$_REQUEST['text1']."&nbsp;".$_REQUEST['text2']."</td></tr>";
-	$message=$message."<tr><th>מספר טלפון</th><td>".$_REQUEST['text3']."</td></tr>";
-	$message=$message."<tr><th>ציפורניים</th><td>".$_REQUEST['nm1']."</td></tr>";
-	$message=$message."<tr><th>מייקאפ</th><td>".$_REQUEST['nm2']."</td></tr>";
-	$message=$message."<tr><th>גבות ושעוות</th><td>".$_REQUEST['nm3']."</td></tr></table>";
-	$message=$message.'<tr><th><a href="http://www.alin-Makeup.co.il">  Alin Makeup Artist חזרה לאתר </a></th></tr>';
+
+	$message = '<html lang="he-IL">';
+	$message .= '<head><meta charset="utf-8"></head>';
+	$message .= '<body dir="rtl" style="width:97%;margin:10px auto;padding:0;color:#990033;font-size:1em;line-height:1;font-family:Arial,Helvetica,sans-serif;">';
+		$message .= '<div style="border:1px solid #DAA520;">';
+			$message .= '<div id="header" style="background:#FFCCCC;border-bottom:1px solid #DAA520;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<h1>פירטי הלקוח/ה ליצירת קשר</h1>';
+				$message .= '</div>';
+			$message .= '</div>';
+			$message .= '<div style="width:100%;background:#ffffff;">';
+				$message .= '<div style="width:100%;margin-right:20px;">';			
+						$message=$message."<th>שם הלקוח/ה: </th><td>"."&nbsp;".$_REQUEST['text1']."&nbsp;".$_REQUEST['text2']."</td></tr>";
+						$message=$message."<tr><th>מספר טלפון: </th><td>"."&nbsp;".$_REQUEST['text3']."</td></tr>";
+						$message=$message."<tr><th>ציפורניים:  </th><td>"."&nbsp;".$_REQUEST['nm1']."</td></tr>";
+						$message=$message."<tr><th>איפור: </th><td>"."&nbsp;".$_REQUEST['nm2']."</td></tr>";
+						$message=$message."<tr><th>גבות ושעוות: </th><td>"."&nbsp;".$_REQUEST['nm3']."</td></tr>";
+				$message .= '</div>';
+			$message .= '</div>';
+			$message .= '<div id="footer" style="background:#FFCCCC;border-top:1px solid #DAA520;">';
+				$message .= '<div style="padding:20px;text-align:center;width:50%;margin:0 auto;">';
+					$message .= '<a href="http://www.alin-Makeup.co.il" style="font-size:1em;"> חזרה לאתר Alin Makeup Artist ';
+			$message .= '</div></div></div>';
+	$message .= '</body></html>';
 	
     require 'PHPMailerAutoload.php';
 		

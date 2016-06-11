@@ -79,8 +79,8 @@ class Site {
 			$this->ThemePath = $this->AURL . trim($ThemeDir, "/") . "/" . $this->Theme . "/";
 			// AssetPath->url/alin-makeup/theme/makeupProject/assets/
 			$this->AssetPath = $this->ThemePath . "assets/";
-
-			$this->PerPage = 16;
+			
+			/*$this->PerPage = 16;
 			$this->Sort = "ProductName";//This function sorts an array. Elements will be arranged from lowest to highest when this function has completed.
 			$this->Ord = "Asc";//Returns the ASCII value of the first character of string.
 			$this->View = "grid";
@@ -105,7 +105,7 @@ class Site {
 
 			if (isset($_SESSION['View'])){
 				$this->View = $_SESSION['View'];
-			}
+			}*/
 
 		}
 		else {//in case website not set

@@ -20,7 +20,7 @@ function ReplaceEmpty($variable,$value){
 		//return other value
 		$rtn = $value;
 	}
-	/*check if the magic_quotes state for GPC (Get/Post/Cookie) operations are off. When magic_quotes are on, all ' (single-quote), " (double quote), \ (backslash) and NUL's are escaped with a backslash automatically.*/
+	/*check if the magic_quotes state for (Get/Post/Cookie) operations are off. When magic_quotes are on, all ' , " , \ ,NUL's are escaped with a "\" automatically. in the past it was useful to prevent SQL Injection*/	
 	if (!get_magic_quotes_gpc()) 
 	{
 		//if rtn is not a array
@@ -33,7 +33,7 @@ function ReplaceEmpty($variable,$value){
 			return $rtn;
 		}	
 	}
-	else 
+	else //magic_quotes state for (Get/Post/Cookie) operations are on
 	{
 		return $rtn;
 	}
