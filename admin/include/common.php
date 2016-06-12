@@ -234,19 +234,19 @@ function IsFileUploaded($arrayname){
 }
 //upload file with name filename(file menas gallery photo) from 'profilepic-1 arr with max size 8388608
 function UploadFile($filename, $arrayname, $maxsize = 8388608){
-	$uploadedfile = $_FILES[$arrayname]['tmp_name'];//name
-	$filesize = $_FILES[$arrayname]['size'];//size
-	$isremove = ReplaceEmpty("r" . $arrayname, 0);//onkey for artist
-	//if sizefile bigger then the maxsize
+	$uploadedfile = $_FILES[$arrayname]['tmp_name'];//Temporary file name on srver
+	$filesize = $_FILES[$arrayname]['size'];//Size of the file in bytes
+	$isremove = ReplaceEmpty("r" . $arrayname, 0);//only for artist
+	//if filesize bigger then the maxsize
 	if ($filesize > $maxsize){
 		return false;
 	}
-	//file name
+	//file real name
 	$realname = $filename;
 	//if the file were removed
 	if ($isremove == 1){
+		//file a file/directory not exists or file is NULL
 		if ((! file_exists($realname)) || is_null($realname)) {
-
 		}
 		else {
 			unlink($realname);//delete the file
@@ -258,7 +258,8 @@ function UploadFile($filename, $arrayname, $maxsize = 8388608){
 			//return true if the file named by uploadedfile was uploaded via HTTP POST.
 			if (is_uploaded_file($uploadedfile)){
 				if ($filesize > 0){
-					//This function checks to ensure that the file designated by uploadedfile is a valid upload file (meaning that it was uploaded via PHP's HTTP POST upload mechanism). If the file is valid, it will be moved to the filename given by realname.
+					//This function checks to ensure that the file designated by uploadedfile is a valid upload file (meaning that it was uploaded via PHP's HTTP POST upload mechanism). 
+					//If the file is valid, it will be moved to the filename given by realname.
 					move_uploaded_file($uploadedfile, $realname);
 					return true;
 				}
@@ -287,91 +288,7 @@ function InsertLine($FileName, $Data = ""){
 	fwrite($fh, $Data);
 	fclose($fh);
 }
-//In computing, a comma-separated values (CSV) file stores tabular data (numbers and text) in plain text. Each line of the file is a data record. Each record consists of one or more fields, separated by commas. The use of the comma as a field separator is the source of the name for this file format.
 
-//check if the $Value exist in $CSV
-function IsValueInCSV($CSV, $Value, $Sep = ","){
-	$CSV = trim(trim($CSV), $Sep);
-	$Value = trim(trim($Value), $Sep);
-	if ($CSV == '' && $Value == ''){
-		return false;
-	}
-	$arrValue = explode($Sep, $CSV);//put the CSV in arr
-	if (is_array($arrValue)) {
-		//Returns TRUE if var is an array, FALSE otherwise.
-		for( $i = 0; $i < sizeof($arrValue); $i++) {
-			//if one of arr vale is equal $Value return true
-			if ($Value == trim($arrValue[$i])){
-				return true;
-			}
-		}
-	}
-	else{
-		//if not arr and arrValue equal Value return true
-		if ($Value == $arrValue){
-			return true;
-		}
-	}
-	return false;
-}
-//add $Value to $CSV
-function AddToCSV($CSV, $Value, $IsKeepUnique = True, $Sep = ","){
-	$CSV = trim(trim($CSV), $Sep);
-	$Value = trim(trim($Value), $Sep);
-	if ($CSV == ''){
-		return $Value;
-	}
-	if ($IsKeepUnique){
-		if (IsValueInCSV($CSV, $Value)){
-			return $CSV;
-		}
-	}//adding Value if not exist yet
-	if ($Value != ''){
-		return $CSV . $Sep . $Value;
-	}
-	else {
-		return $CSV;
-	}
-}
-//remove $Value from $CSV
-function RemoveFromCSV($CSV, $Value = '', $Sep = ","){
-	$CSV = trim(trim($CSV), $Sep);
-	$Value = trim(trim($Value), $Sep);
-	if ($CSV == ''){
-		return $CSV;
-	}
-	$arrValue = split($Sep, $CSV);//Splits a string into array by regular expression.
-	$CSV = '';
-	if (is_array($arrValue)) {
-		//Returns TRUE if var is an array, FALSE otherwise.
-		for( $i = 0; $i < sizeof($arrValue); $i++) {
-			$CurrentValue = trim($arrValue[$i]);
-			if ($Value != $CurrentValue && $CurrentValue != ''){
-				$CSV = $CSV . $Sep . $CurrentValue;
-			}
-		}
-		return trim(trim($CSV), $Sep);
-	}
-	else {
-		if ($value == $arrValue){
-			return '';
-		}
-	}
-}
-//remove duplicate values from csv
-function RemoveDuplicateFromCSV($CSV, $Value = '', $Sep = ","){
-    $CSV = trim(trim($CSV), $Sep);
-    $Value = trim(trim($Value), $Sep);
-
-    if ($CSV == ''){
-        return $CSV;
-    }
-    $arrValue = split($Sep, $CSV);//Splits a string into array by regular expression.
-    if (is_array($arrValue)){
-        $arrValue = array_unique($arrValue);//Removes duplicate values from an array 
-    }
-    return implode(",", $arrValue);//join array elements with a string
-}
 //makr title with uppercase
 function TitleCase($string){ 
 	$len=strlen($string); //Get string length
@@ -657,23 +574,109 @@ function strleft($s1, $s2) {
 }
 
 function IsRemoteFileExists($url) {
-    $curl = curl_init($url);
+    $curl = curl_init($url);//initialization curl request
     //don't fetch the actual page, you only want to check the connection is ok
-    curl_setopt($curl, CURLOPT_NOBODY, true);
-    //do request
-    $result = curl_exec($curl);
+    curl_setopt($curl, CURLOPT_NOBODY, true);//do the download request without getting the body
+    $result = curl_exec($curl);//execution and hold response is returned.
     $ret = false;
     //if request did not fail
     if ($result !== false) {
         //if request was ok, check response code
-        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE); // Check HTTP status code
 
-        if ($statusCode == 200) {
+        if ($statusCode == 200) {//if 200 it's ok
             $ret = true;   
         }
     }
-    curl_close($curl);
+    curl_close($curl);//Release the curl handle
     return $ret;
+}
+//************************************************************************************************************************//
+/*Extension to use CSV pages (exel), Raising excel file to database, and use them in many different ways which php allows.*/
+//************************************************************************************************************************//
+
+//check if the $Value exist in $CSV
+function IsValueInCSV($CSV, $Value, $Sep = ","){
+	$CSV = trim(trim($CSV), $Sep);
+	$Value = trim(trim($Value), $Sep);
+	if ($CSV == '' && $Value == ''){
+		return false;
+	}
+	$arrValue = explode($Sep, $CSV);//put the CSV in arr
+	if (is_array($arrValue)) {
+		//Returns TRUE if var is an array, FALSE otherwise.
+		for( $i = 0; $i < sizeof($arrValue); $i++) {
+			//if one of arr vale is equal $Value return true
+			if ($Value == trim($arrValue[$i])){
+				return true;
+			}
+		}
+	}
+	else{
+		//if not arr and arrValue equal Value return true
+		if ($Value == $arrValue){
+			return true;
+		}
+	}
+	return false;
+}
+//add $Value to $CSV
+function AddToCSV($CSV, $Value, $IsKeepUnique = True, $Sep = ","){
+	$CSV = trim(trim($CSV), $Sep);
+	$Value = trim(trim($Value), $Sep);
+	if ($CSV == ''){
+		return $Value;
+	}
+	if ($IsKeepUnique){
+		if (IsValueInCSV($CSV, $Value)){
+			return $CSV;
+		}
+	}//adding Value if not exist yet
+	if ($Value != ''){
+		return $CSV . $Sep . $Value;
+	}
+	else {
+		return $CSV;
+	}
+}
+//remove $Value from $CSV
+function RemoveFromCSV($CSV, $Value = '', $Sep = ","){
+	$CSV = trim(trim($CSV), $Sep);
+	$Value = trim(trim($Value), $Sep);
+	if ($CSV == ''){
+		return $CSV;
+	}
+	$arrValue = split($Sep, $CSV);//Splits a string into array by regular expression.
+	$CSV = '';
+	if (is_array($arrValue)) {
+		//Returns TRUE if var is an array, FALSE otherwise.
+		for( $i = 0; $i < sizeof($arrValue); $i++) {
+			$CurrentValue = trim($arrValue[$i]);
+			if ($Value != $CurrentValue && $CurrentValue != ''){
+				$CSV = $CSV . $Sep . $CurrentValue;
+			}
+		}
+		return trim(trim($CSV), $Sep);
+	}
+	else {
+		if ($value == $arrValue){
+			return '';
+		}
+	}
+}
+//remove duplicate values from csv
+function RemoveDuplicateFromCSV($CSV, $Value = '', $Sep = ","){
+    $CSV = trim(trim($CSV), $Sep);
+    $Value = trim(trim($Value), $Sep);
+
+    if ($CSV == ''){
+        return $CSV;
+    }
+    $arrValue = split($Sep, $CSV);//Splits a string into array by regular expression.
+    if (is_array($arrValue)){
+        $arrValue = array_unique($arrValue);//Removes duplicate values from an array 
+    }
+    return implode(",", $arrValue);//join array elements with a string
 }
 
 
