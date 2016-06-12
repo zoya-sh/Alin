@@ -21,7 +21,7 @@ function GetValue($tn, $sf, $gf, $val, $nf = ""){
 	}
 }
 
-//get id from db
+//get max id from and ++1 for adding data 
 function GetID($tn,$fn){
 	global $db;
 	$SQL = "select max($fn) from $tn";
