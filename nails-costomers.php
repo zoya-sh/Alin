@@ -47,7 +47,7 @@ Class NailsCustomer
             <form action="nails-costomers.php" method="POST" enctype="multipart/form-data">
                 <center>
                     <div class="makeupprofilepage_intro">
-                        <input type="submit" value="++1" class="custom_btn" />&nbsp;&nbsp;&nbsp;&nbsp
+                        <input type="submit" value="הוספת טיפול" class="custom_btn" />&nbsp;&nbsp;&nbsp;&nbsp
                         <input type="hidden" name="mode" value="increment">
                         <input type="hidden" name="memberid" value="<?php echo $rw['MemberID'] ?>">
                         <?php
@@ -111,7 +111,7 @@ Class NailsCustomer
 
                             <div class="makeupprofilepage_intro_col_row">
                                 <!-- makeupprofilepage_intro_col_row start -->
-                                <input type="submit" value="ok" class="custom_btn" />
+                                <input type="submit" value="טען" class="custom_btn" />
                             </div>
                             <!-- makeupprofilepage_intro_col_row close// -->
                         </div>

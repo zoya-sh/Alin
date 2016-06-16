@@ -39,7 +39,8 @@ Class CPassword
         if ($this->IsValid())
 		{
 			$NPassword = ReplaceEmpty("newpassword","");//sha($NPassword)
-            $SQL = "update member set password = '$NPassword' where MemberID = $SAWMemberID";
+			$pass=  base64_encode($NPassword);
+            $SQL = "update member set password = '$pass' where MemberID = $SAWMemberID";
             GetRS($SQL);	
             return true;
         }

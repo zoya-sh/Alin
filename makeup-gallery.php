@@ -136,7 +136,7 @@ Class MakeupGallery
 						<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" means 
 						after secting a photo "profilepic-1"=to some number... 1465116 in our case-->
 						<input type="file" name="profilepic-1" class="custom_input" />
-						<input type="submit" value="OK" class="custom_btn" />
+						<input type="submit" value="אישור" class="custom_btn" />
 						<input type="hidden" name="mode" value="photoupload" >
 					</form>
 				</div>

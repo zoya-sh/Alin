@@ -104,7 +104,7 @@ Class CareTips {
 						<h2>הוספת טיפ</h2>
 						<form action="care-tips.php" method="POST" enctype="multipart/form-data">
 							<textarea name="desc"></textarea>
-							<input type="submit" value="OK" class="custom_btn" />
+							<input type="submit" value="אישור" class="custom_btn" />
 							<input type="hidden" name="mode" value="addtips">
 						</form>
 					</div>

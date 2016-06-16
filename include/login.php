@@ -141,8 +141,8 @@ function doUserAndPasswordMatch($user,$password)
 {
 	global $db;
 	$LangID = ReplaceEmpty("langid","1");
-	//password =  sha($password)
-	$SQL = "select * from member where Email = '$user' and password = '$password'";
+	$decode = base64_encode($password);
+	$SQL = "select * from member where Email = '$user' and password = '$decode'";
 	$rsUser = @mysql_query($SQL,$db->cnn) or die(mysql_error());//get the line with the user details
 
 	if ($rwUser = mysql_fetch_array($rsUser))//make array for user details
@@ -161,9 +161,9 @@ function doUserAndPasswordMatch($user,$password)
 function isUserActive($user,$password)
 {
 	global $db;
-	//password =  sha($password)
+	$decode = base64_encode($password);
 	//0 if we want not to activit user account, 1 to activit user account
-	$SQL = "select * from member where Email = '$user' and password = '$password' and isenable = 1";
+	$SQL = "select * from member where Email = '$user' and password = '$decode' and isenable = 1";
 	$rsUser = @mysql_query($SQL,$db->cnn) or die(mysql_error());//get the line with the user details
 
 	if ($rwUser = mysql_fetch_array($rsUser))//make array for user details

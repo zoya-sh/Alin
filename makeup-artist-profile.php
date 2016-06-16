@@ -58,6 +58,51 @@ Class Profile
 						// user profile 
 						if($_SESSION['SAWProfileType'] == 'user')
 						{
+							$y10 = 10;
+							$y5 = 5;
+							if($rw['Treatment'] <5)
+							{
+							?>
+			
+							<?php
+							}
+							elseif($rw['Treatment'] > 4)
+							{
+								
+								$result10 = fmod($rw['Treatment'],$y10);
+								$result5 = fmod($rw['Treatment'],$y5);
+								if($result10==0 || $result5==0)
+								{
+									if($result10!=0 && $result5==0)
+									{
+											?>
+										<div class="videopage_intro_coll_bottom">
+											<div class="videopage_intro_coll_bottom_row">
+												<a href="<?php echo $Site->ThemePath ?>images/treatment5.png"  target="_new"  class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
+											</div>
+											<div class="videopage_intro_coll_bottom_row">
+												<img src="<?php echo $Site->ThemePath ?>images/treatment5.png" alt="" />
+											</div>	
+										</div>		
+										<?php
+									}
+									if($result10==0 && $result5==0)
+									{
+										?>
+										<div class="videopage_intro_coll_bottom">
+											<div class="videopage_intro_coll_bottom_row">
+												<a href="<?php echo $Site->ThemePath ?>images/treatment10.png" target="_new" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
+											</div>
+											<div class="videopage_intro_coll_bottom_row">
+												<img src="<?php echo $Site->ThemePath ?>images/treatment10.png" alt="" />
+											</div>	
+										</div>		
+										<?php	
+									}
+								}
+							}
+							
+							/*
 							$y = 10;
 							$result = fmod($rw['Treatment'],$y);
 							if($rw['Treatment'] <5)
@@ -96,7 +141,7 @@ Class Profile
 									</div>		
 									<?php
 								}
-							}	
+							}*/	
 						}
 							?>
 						</div><!-- user profile - name, phone number email and number of treatment// -->

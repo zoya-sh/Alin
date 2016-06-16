@@ -53,9 +53,8 @@ Class JoinUs
 			$DateAdded = gmdate("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
 			$IsEnable = 1;
-				//sha($this->Password)
-				//DES_ENCRYPT($this->Password, 'password')
-			$SQL = "insert into member (MemberID, ProfileType, FirstName, LastName,  TelNo, Email, Password, IsActive, IsEnable, DateAdded, DateUpdated) values ($MemberID, 'user', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->Email', '$this->Password', '1' , '$IsEnable', '$DateAdded', '$DateUpdated')";
+			$pass=  base64_encode($this->Password);
+			$SQL = "insert into member (MemberID, ProfileType, FirstName, LastName,  TelNo, Email, Password, IsActive, IsEnable, DateAdded, DateUpdated) values ($MemberID, 'user', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->Email', '$pass', '1' , '$IsEnable', '$DateAdded', '$DateUpdated')";
 			GetRS($SQL);
 
 			$_SESSION['SAWMemberID'] = $MemberID ;//cookie-To not allow impersonation of another user PHP gives each customer ID

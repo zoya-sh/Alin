@@ -49,7 +49,7 @@ $SAWMemberID  = @$_SESSION['SAWMemberID'] ;
 		<div class="logo"><a href="index.php"><img src="<?php echo $Site->ThemePath ?>images/logo.png" alt="" /></a></div>
         <div id='menu'><!-- menu start -->
             <ul>
-               <li class=''><a href='index.php' class="menuactive">דף הבית</a></li>
+               <li class=''><a href='index.php' >דף הבית</a></li>
                <li class=''><a href='#' class="">גלריה</a>
                	<ul>
                 	<li><a href="makeup-gallery.php">גלריית איפור</a></li>
