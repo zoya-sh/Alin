@@ -20,15 +20,7 @@ class Site {
 	public $MetaTitle;
 	public $MetaKeyword;
 
-
-	public $Brands;
 	public $Theme;
-
-	public $PerPage;
-	public $Sort;
-	public $Ord;
-	public $View;
-
 	public $DataDir;
 	public $DocRoot;
 
@@ -39,7 +31,7 @@ class Site {
 		global $ThemeDir;
 
 		$URL = SelfURL();//get url of current php file
-		// checks whether a variable - $URL is NULL if nut NULL returns WebsiteID
+		// checks whether a variable - $URL is NULL if not NULL returns WebsiteID
 		$this->WebsiteID = GetValue("website", "URL", "WebsiteID", $URL, 1);
 		//select our website vars
 		$SQL = "select * from website where WebsiteID = $this->WebsiteID";
@@ -79,34 +71,6 @@ class Site {
 			$this->ThemePath = $this->AURL . trim($ThemeDir, "/") . "/" . $this->Theme . "/";
 			// AssetPath->url/alin-makeup/theme/makeupProject/assets/
 			$this->AssetPath = $this->ThemePath . "assets/";
-			
-			/*$this->PerPage = 16;
-			$this->Sort = "ProductName";//This function sorts an array. Elements will be arranged from lowest to highest when this function has completed.
-			$this->Ord = "Asc";//Returns the ASCII value of the first character of string.
-			$this->View = "grid";
-			$this->CartType = "2";
-			
-			
-			//check if website is set
-			if (isset($_SESSION['PerPage'])){
-				//finds whether a variable is a number or a numeric string
-				if (is_numeric($_SESSION['PerPage'])){
-					$this->PerPage = $_SESSION['PerPage'];
-				}
-			}
-
-			if (isset($_SESSION['Sort'])){
-				$this->Sort = $_SESSION['Sort'];
-			}
-
-			if (isset($_SESSION['Ord'])){
-				$this->Ord = $_SESSION['Ord'];
-			}
-
-			if (isset($_SESSION['View'])){
-				$this->View = $_SESSION['View'];
-			}*/
-
 		}
 		else {//in case website not set
 			echo "<center>No website configured for this domain";

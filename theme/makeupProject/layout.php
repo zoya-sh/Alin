@@ -12,8 +12,8 @@ global $Site;
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 	
     <title>Alin-Makeup-Artist</title>
-    <!-- faveicon start-  an icon associated with a URL that is variously displayed, as in a browser's address bar or next to the site name in a bookmark list
-    <link rel="icon" type="image/png" href="<?php echo $Site->ThemePath ?>images/faveicon.png" sizes="16x16">.-->
+    <!-- faveicon start-  an icon associated with a URL that is variously displayed, as in a browser's address bar or next to the site name in a bookmark list-->
+    <link rel="icon" type="image/png" href="<?php echo $Site->ThemePath ?>images/faveicon.ico" sizes="16x16">
     <!-- faveicon close// -->
     <!-- style start -->
     <link href="<?php echo $Site->ThemePath ?>css/style.css" rel="stylesheet" type="text/css" /><!-- css for text  -->

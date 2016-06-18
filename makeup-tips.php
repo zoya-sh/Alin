@@ -11,7 +11,7 @@ if ($Mode == "addtips")
 	//add tip successfully
 	if ($MakeupTips->Add())
 	{
-		SetMsg("$MakeupTips->ObjName הטיפ נוסף בהצלחה","success");            
+		SetMsg("<b><font color=red>$MakeupTips->ObjName הטיפ נוסף בהצלחה</font></b>","success");
         header("Location: ".$Site->AURL."makeup-tips.php");
         exit();             
 	}
@@ -24,8 +24,8 @@ if ($Mode == "addtips")
 if($Mode=="removed")
 {
 	//remove tip successfully
-	$MakeupTips->Remove($MackupTipsID) ;
-	SetMsg("$MakupGallery->ObjName הטיפ הוסר בהצלחה","success");            
+	$MakeupTips->Remove($MackupTipsID);
+	SetMsg("<b><font color=red>$MakupGallery->ObjName הטיפ הוסר בהצלחה</font></b>","success");
 	header("Location: ".$Site->AURL."makeup-tips.php");
 	exit(); 
 }
@@ -37,17 +37,16 @@ PrintTopHeader();//tollbar of the page
 $MakeupTips->PrintMakeupTips();
 CloseBody();//close body
 
-//class for adding maekup tips by artist
+//class that adds maekup tips by artist
 Class MakeupTips {
 	
 	function MakeupTips(){}
 	
 	function Add()
 	{
-
-		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//cookie
-		//check if the detalies is right
+		global $Site;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
+		//check if the details is right
         if ($this->IsValid())
 		{
             $TipsID = GetID("tips","TipsID");
@@ -67,13 +66,13 @@ Class MakeupTips {
 	//delete tips 
 	function Remove($TipsID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 		//delete tips from data base
 		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 1 and MemberID = $SAWMemberID";
 		GetRs($SQL);
-		return true;		
+		return true;
 	}
-	
+	//check if the user valid and there is no error
 	function IsValid()
 	{
 		$this->Error = "";
@@ -82,23 +81,25 @@ Class MakeupTips {
 		$this->Error = $error;
 		return $Valid;
 	}
-	
+	//page form
 	function PrintMakeupTips()
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
 				<h2>עולם האיפור</h2>
 			</div>
+			<?php echo ShowMsg() ?>
 			<?php 
-			$SAWProfileType = @$_SESSION['SAWProfileType'] ;
+			$SAWProfileType = @$_SESSION['SAWProfileType'];
 			if($SAWProfileType != 'user')
 			{ ?>
 				<?php if (isset($_SESSION['SAWMemberID'])) 
 				{  ?>
 					<div class="makeuptips_intro">
-					<div class="makeuptips_intro_row"><!-- makeuptips_intro_row start -->
+					<div class="makeuptips_intro_row">
+						<!-- makeuptips_intro_row start -->
 						<h2>הוספת טיפ</h2>
 						<form action="makeup-tips.php" method="POST" enctype="multipart/form-data">
 							<textarea name="desc"></textarea>
@@ -112,8 +113,8 @@ Class MakeupTips {
 			}
 			//TipsType = '1' means makeup tips
 			$SQL = "select * from  tips where TipsType = '1'";
-			$rs = GetRs($SQL) ;
-			$Count = 1 ;
+			$rs = GetRs($SQL);
+			$Count = 1;
 			while($rw = mysql_fetch_array($rs))
 			{
 				?>
@@ -131,12 +132,11 @@ Class MakeupTips {
 					</div>
 					<!-- makeuptips_intro_row close -->
 				<?php
-				$Count = $Count + 1 ;
+				$Count = $Count + 1;
 			}
 			?>
 		</div>
-		</div>
-		<!-- ipage close -->
+		</div><!-- ipage close -->
 	<?php	
 	}
 }

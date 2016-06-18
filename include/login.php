@@ -6,7 +6,6 @@ $VarietyID = ReplaceEmpty("varietyid" , "") ;
 
 if (isset($_GET['mode']))
 {
-	global $Cart ;
 	//on logout unset memberId and ProfileType(makeup artist or simple user)
 	if ($_GET['mode'] == "logout")
 	{
@@ -14,7 +13,6 @@ if (isset($_GET['mode']))
 		unset($_SESSION['SAWProfileType']);//srtist or user
 		SetMsg('<b><font color=red>ההתנתקות בוצעה בהצלחה</b></font>');
 		header("Location:  " . $Site->DocRoot . "index.php");// on logout go to home page
-		$Cart->ClearCart();
 	}
 }
 
@@ -67,22 +65,7 @@ function PrintLoginForm(){
 	$Email = ReplaceEmpty("email", "");
 	$UserName = ReplaceEmpty("username", "");
 	$Password = ReplaceEmpty("password", "");
-	$CPassword = ReplaceEmpty("cpassword", "");
-	$CompanyName = ReplaceEmpty("companyname", "");
-	$Title = ReplaceEmpty("title", "");
-	$FirstName = ReplaceEmpty("firstname", "");
-	$LastName = ReplaceEmpty("lastname", "");
-	$MiddleName = ReplaceEmpty("middlename", "");
-	$Address1 = ReplaceEmpty("address1", "");
-	$Address2 = ReplaceEmpty("address2", "");
-	$City = ReplaceEmpty("city", "");
-	$Postcode = ReplaceEmpty("postcode", "");
-	$CountryID = ReplaceEmpty("countryid", "0");
-	$County = ReplaceEmpty("county", "");
-	$TelNo = ReplaceEmpty("telno", "");
-	$Mobile = ReplaceEmpty("mobile", "");
-	$Fax = ReplaceEmpty("fax", "");
-	$Agreed = ReplaceEmpty("agreed", "0");
+	
 	?>
     <div class="ipage joinpage">
         <!-- ipage start -->
@@ -119,8 +102,7 @@ function PrintLoginForm(){
 
             </form>
         </div>
-    </div>
-    <!-- ipage close// -->
+    </div> <!-- ipage close// -->
     <?php 
 }
 //function get the current user 

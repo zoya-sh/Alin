@@ -3,15 +3,15 @@ require_once('include/require.php');
 
 $DoItByYourSlef = new DoItByYourSlef(); 
 $Mode = ReplaceEmpty("mode","show");
-$VideoIDD = ReplaceEmpty("videoid","");
+$VideoID = ReplaceEmpty("videoid","");
 
-//add video to the gallery
+//if the video has been successfully added
 if ($Mode == "addvideo")
 {
 	//add video successfully
 	if ($DoItByYourSlef->Add())
 	{
-		SetMsg("$DoItByYourSlef->ObjName נוסף בהצלחה","success");            
+		SetMsg("<b><font color=red>$DoItByYourSlef->ObjName סרטון נוסף בהצלחה</b></font>","success");           
         header("Location: ".$Site->AURL."do-it-by-yourself.php");
         exit();             
 	}
@@ -20,12 +20,12 @@ if ($Mode == "addvideo")
 	    SetMsg($DoItByYourSlef->Error,"error");           
 	}
 }
-//delete photo from the gallery
+//delete video from the gallery
 if($Mode=="removed")
 {	
 	//removed video successfully
-	$DoItByYourSlef->Remove($VideoIDD) ;
-	SetMsg("$MakupGallery->ObjName הוסר בהצלחה","success");            
+	$DoItByYourSlef->Remove($VideoID) ;
+	SetMsg("<b><font color=red>$DoItByYourSlef->ObjName סרטון הוסר בהצלחה</b></font>","success");        
 	header("Location: ".$Site->AURL."do-it-by-yourself.php");
 	exit(); 
 }
@@ -37,33 +37,30 @@ PrintTopHeader();//tollbar of the page
 $DoItByYourSlef->PrintDoItByYourSlef();
 CloseBody();//close body
 
-
 Class DoItByYourSlef
 {
-
 	function DoItByYourSlef(){}
 	//add new video
 	function Add()
 	{
-		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'];//cookie
+		global $Site;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
         
 		if ($this->IsValid())
 		{
-			$VideoID = GetID("video", "VideoID");
+			$VideoID = GetID("video", "VideoID");//id number of video
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
-
-			$this->Image = "" ;
-			/** Create directory **/
-
+			$this->Image = "";
+			
+			/** Creating a path to upload video **/
 			$PushPath = "" ;
 			$count = 0  ;
 			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for video that we can upload
 			$max_file_size = 1024*100; //video size
-			$path = "video/"; // Upload directory
+			$path = "video/"; //path to save video
 			
-			//our PHP file named "profilepic-1" automatically entered into a global super variable named $ FILES_.
+			//our PHP file named "profilepic-1" automatically entered into a global super variable named $_FILES
 			$ProfilePicFileName1 = GetUploadFileName("profilepic-1", $VideoID.'-1');
 			if($ProfilePicFileName1) 
 			{
@@ -71,7 +68,7 @@ Class DoItByYourSlef
 				$name = $_FILES['profilepic-1']['name'] ;//The original name of the file on the client machine(our case video name)
 				if ($_FILES['profilepic-1']['error'] == 4) //The error code associated with "profilepic-1" file upload.
 				{
-					continue; // Skip file if any error found
+					continue; //Skip file if any error found
 				}
 				//if there is no error code associated with "profilepic-1" file upload.				
 				if ($_FILES['profilepic-1']['error'] == 0) 
@@ -84,9 +81,8 @@ Class DoItByYourSlef
 							$count++; // Number of successfully uploaded files
 						}
 				}
-
 			}
-			//if videos web uploaded to the directory successfully we saved them on dataBase
+			//if videos uploaded to the path successfully we saved them on dataBase
 			if(!empty($_FILES['profilepic-1']['name']))
 			{		
 				$VideoID = GetID("video", "VideoID");  
@@ -101,7 +97,7 @@ Class DoItByYourSlef
             return false;
         }
     }
-	//delete video from dataBase
+	//delete video from data-base
 	function Remove($VideoID = 0)
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
@@ -109,27 +105,27 @@ Class DoItByYourSlef
 		GetRs($SQL);
 		return true;	
 	}
+	//check if the user valid and there is no error
 	function IsValid()
 	{
 		$this->Error = "";
 		$Valid = true;
         $error = "";
 		$this->Error = $error;
-
 		return $Valid;
 	}
-	//Print video Gallery
+	//show video Gallery
 	function PrintDoItByYourSlef()
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		
+		global $Site;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 	?>
 	<div class="ipage videopage"><!-- ipage start -->
 		<div class="rowhead">
 			<h2>עשה זאת בעצמך!</h2>
 		</div>
-		<?php 			//only if it's makeup artist e can add or remove video from gallery
-
+		<?php echo ShowMsg() ?>
+		<?php //only if it's makeup artist she can add or remove video from gallery
 		$SAWProfileType = @$_SESSION['SAWProfileType'] ;
 		if($SAWProfileType != 'user')
 		{ ?>
@@ -139,13 +135,13 @@ Class DoItByYourSlef
 					<label>הוספת וידאו</label>
 					<!--the  method is post, the action of upload video is on do-it-by-yourself.php-->
 					<form action="do-it-by-yourself.php" method="POST" enctype="multipart/form-data">
-						<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" -->
+					<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" -->
 						<input type="file" name="profilepic-1" class="custom_input" />
 						<input type="submit" value="אישור" class="custom_btn" />
 						<input type="hidden" name="mode" value="addvideo" >
 					</form>
 				</div>
-			<?php
+			   <?php
 			}
 		}
 		?>
@@ -157,8 +153,7 @@ Class DoItByYourSlef
 			while($rw = mysql_fetch_array($rs))
 			{
 				$Count = $Count + 1;
-		?>
-					
+		?>	
 				<div class="videopage_intro_col"><!-- videopage_intro_col start , video type mp4-->
 				<video width="100%" height="100%" controls>
 					<source src="<?php echo $rw['Path'] ?>" type="video/mp4"></video>
@@ -174,14 +169,14 @@ Class DoItByYourSlef
 				//only 2 video in line
 				if($Count%2 ==0)
 				{	
-					echo "<p style='	      clear: both;'></p>";
+					echo "<p style='clear: both;'></p>";
 				}
 			}
 			?>
 		</ul>
 		<div class="clear"></div>
-		</div><!-- ipage close -->
-		<?php	
+	</div><!-- ipage close -->
+	<?php	
 	}
 }
 ?>

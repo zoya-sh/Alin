@@ -11,7 +11,7 @@ if ($Mode == "photoupload")
 	//add photo successfully
 	if ($MakeupGallery->Add())
 	{
-		SetMsg("$MakeupGallery->ObjName נוספה בהצלחה","success");            
+		SetMsg("<b><font color=red>$MakeupGallery->ObjName תמונה נוספה בהצלחה</b></font>","success");           
         header("Location: ".$Site->AURL."makeup-gallery.php");
         exit();             
 	}
@@ -25,19 +25,18 @@ if($Mode=="remove")
 {	
 	//removed photo successfully
 	$MakeupGallery->Remove($MGalleryID) ;
-	SetMsg("$MakeupGallery->ObjName הוסרה בהצלחה","success");            
+	SetMsg("<b><font color=red>$MakeupGallery->ObjName תמונה הוסרה בהצלחה</b></font>","success");       
 	header("Location: ".$Site->AURL."makeup-gallery.php");
 	exit(); 
 }
 
 StartHeader();//view of page with the logo
-$MakeupGallery->InsertMyHead();
+$MakeupGallery->InsertMyHead();//add link to gallery.css file
 CloseHeader();//close of header
 StartBody();//middle of page
 PrintTopHeader();//tollbar of the page
 $MakeupGallery->PrintMakupGallery();
 CloseBody();//close body
-
 
 Class MakeupGallery 
 {
@@ -45,24 +44,24 @@ Class MakeupGallery
 	//add photo to the gallery
 	function Add()
 	{
-		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//cookie
+		global $Site;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 	
         if ($this->IsValid())
 		{	
             $MGalleryID = GetID("mgallery","MGalleryID");//id number of photo
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
-			$this->Image = "" ;
+			$this->Image = "";
 			
-			/** Create directory **/
-			$PushPath = "" ;
-			$count = 0  ;
+			/** Creating a path to upload photos **/
+			$PushPath = "";
+			$count = 0;
 			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for photo that we can upload
 			$max_file_size = 1024*100; //photo size
-			$path = "photo/"; // Upload directory
+			$path = "photo/makeupGallery/"; //path to save photos
 			
-			//our PHP file named "profilepic-1" automatically entered into a global super variable named $ FILES_.
+			//our PHP file named "profilepic-1" automatically entered into a global super variable named $_FILES
 			$ProfilePicFileName1 = GetUploadFileName("profilepic-1", $MGalleryID.'-1');
 			if($ProfilePicFileName1) 
 			{
@@ -70,7 +69,7 @@ Class MakeupGallery
 				$name = $_FILES['profilepic-1']['name'] ;//The original name of the file on the client machine(our case photo name)
 				if ($_FILES['profilepic-1']['error'] == 4) //The error code associated with "profilepic-1" file upload.
 				{
-					continue; // Skip file if any error found
+					continue; //Skip file if any error found
 				}
 				//if there is no error code associated with "profilepic-1" file upload.				
 				if ($_FILES['profilepic-1']['error'] == 0) 
@@ -89,7 +88,7 @@ Class MakeupGallery
 			{	
 				$MGalleryID = GetID("mgallery", "MGalleryID");  
 				$DateAdded = ""	;
-				$SQL = "insert into mgallery (MGalleryID, ImagePath, MemberID , DateAdded) values ($MGalleryID, '$PushPath',  '$SAWMemberID', '$DateAdded')";
+				$SQL = "insert into mgallery (MGalleryID, ImagePath, MemberID , DateAdded) values ($MGalleryID, '$PushPath', '$SAWMemberID', '$DateAdded')";
 				GetRS($SQL);	
 			}		
             return true;
@@ -102,11 +101,12 @@ Class MakeupGallery
 	//delete makeup photos from dataBase
 	function Remove($GID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;//IsNail = 0 for makeup gallery
+		$SAWMemberID = @$_SESSION['SAWMemberID'] ;//IsNail = 0 for makeup gallery
 		$SQL = "delete from mgallery where MGalleryID = $GID and IsNail = 0 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;	
 	}
+	//check if the user valid and there is no error
 	function IsValid()
 	{
 		$this->Error = "";
@@ -119,10 +119,11 @@ Class MakeupGallery
 	function PrintMakupGallery()
 	{
 		global $Site;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 	?>
 	<div class="ipage gallerypage"><!-- ipage start -->
     	<!-- ipage start -->
+		<?php echo ShowMsg() ?>
 		<?php //only if it's makeup artist e can add or remove photo from gallery
 		$SAWProfileType = @$_SESSION['SAWProfileType'] ;
 		if($SAWProfileType != 'user')
@@ -133,8 +134,7 @@ Class MakeupGallery
 					<label>הוספת תמונה</label>
 					<!--the  method is post, the action of upload photo is on makeup-gallery.php -->
 					<form action="makeup-gallery.php" method="POST" enctype="multipart/form-data">
-						<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" means 
-						after secting a photo "profilepic-1"=to some number... 1465116 in our case-->
+					<!--the input kind is file that we want to upload to our server, the file name "profilepic-1" -->
 						<input type="file" name="profilepic-1" class="custom_input" />
 						<input type="submit" value="אישור" class="custom_btn" />
 						<input type="hidden" name="mode" value="photoupload" >
@@ -147,13 +147,12 @@ Class MakeupGallery
     	<ul id="lightGallery" class="gallery">
 		<?php
 			$SQL = "select * from  mgallery where IsNail = 0";
-			$rs = GetRs($SQL) ;
-			$Count  = 0 ;
+			$rs = GetRs($SQL);
+			$Count = 0;
 			while($rw = mysql_fetch_array($rs))
 			{
 				$Count = $Count + 1;			
 		?>
-				<!--<li><span><a href="#" data-title="pic" data-desc="pic" data-src="-->
 				<li><span><a href="#" data-title="" data-desc="" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
 				<?php if($SAWMemberID == $rw['MemberID'])
 				{ ?>
@@ -166,7 +165,7 @@ Class MakeupGallery
 				//only 5 photo in line
 				if($Count%5 ==0)
 				{	
-					echo "<p style='    clear: both;'></p>";
+					echo "<p style='clear: both;'></p>";
 				}
 			}
 			?>
@@ -189,7 +188,7 @@ Class MakeupGallery
 			<!-- gallery-script// -->
 			<?php	
 	}
-	//insert photo on Theme Path
+	//add link to gallery.css file
 	function InsertMyHead()
 	{
 		global $Site;

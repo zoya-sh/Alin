@@ -11,7 +11,7 @@ if ($Mode == "addtips")
 	//add tip successfully
 	if ($NailsTips->Add())
 	{
-		SetMsg("$NailsTips->ObjName הטיפ נוסף בהצלחה","success");            
+		SetMsg("<b><font color=red>$NailsTips->ObjName הטיפ נוסף בהצלחה</font></b>","success");            
         header("Location: ".$Site->AURL."nails-tips.php");
         exit();             
 	}
@@ -24,8 +24,8 @@ if ($Mode == "addtips")
 if($Mode=="removed")
 {
 	//remove tip successfully
-	$NailsTips->Remove($NailsTipsID) ;
-	SetMsg("$MakupGallery->ObjName הטיפ נמחק בהצלחה","success");            
+	$NailsTips->Remove($NailsTipsID);
+	SetMsg("<b><font color=red>$NailsTips->ObjName הטיפ הוסר בהצלחה</font></b>","success");            
 	header("Location: ".$Site->AURL."nails-tips.php");
 	exit(); 
 }
@@ -37,22 +37,21 @@ PrintTopHeader();//tollbar of the page
 $NailsTips->PrintNailsTips();
 CloseBody();//close body
 
-//class for adding nail tips by artist
+//class that adds nail tips by artist
 Class NailsTips {
 
 	function NailsTips(){}
 	
 	function Add()
 	{
-		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//check if the detalies is right
+		global $Site;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
+		//check if the details is right
         if ($this->IsValid())
 		{	
             $TipsID = GetID("tips","TipsID");
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
-			$TipsID = GetID("tips", "TipsID");  
 			$Desc = ReplaceEmpty("desc","");
 			//inset tip to data base
             $SQL = "insert into tips (TipsID , `Desc`, TipsType , MemberID , DateAdded) values ($TipsID , '$Desc' , '2' , '$SAWMemberID' , '$DateAdded')";
@@ -67,13 +66,13 @@ Class NailsTips {
 	//delete tips 
 	function Remove($TipsID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 		//delete tips from data base
-		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 2 and MemberID  = $SAWMemberID";
+		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 2 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;
 	}
-	
+	//check if the user valid and there is no error
 	function IsValid()
 	{
 		$this->Error = "";
@@ -82,22 +81,23 @@ Class NailsTips {
 		$this->Error = $error;
 		return $Valid;
 	}
-	
+	//page form
 	function PrintNailsTips()
 	{
 		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//global $Site ;
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
 				<h2>עולם הציפורניים</h2>
 			</div>
+			<?php echo ShowMsg() ?>
 			<?php
-			$SAWProfileType = @$_SESSION['SAWProfileType'] ;
+			$SAWProfileType = @$_SESSION['SAWProfileType'];
 			if($SAWProfileType != 'user')
 			{ ?>
 				<?php if (isset($_SESSION['SAWMemberID'])) 
 				{  ?>
+					<div class="makeuptips_intro">
 					<div class="makeuptips_intro_row">
 						<!-- makeuptips_intro_row start -->
 						<h2>הוספת טיפ</h2>
@@ -113,8 +113,8 @@ Class NailsTips {
 			}
 			//TipsType = '2' means nail tips
 			$SQL = "select * from  tips where TipsType = '2'";
-			$rs = GetRs($SQL) ;
-			$Count = 1 ;
+			$rs = GetRs($SQL);
+			$Count = 1;
 			while($rw = mysql_fetch_array($rs))
 			{
 				?>
@@ -132,12 +132,11 @@ Class NailsTips {
 					</div>
 					<!-- makeuptips_intro_row close -->
 				<?php
-				$Count = $Count + 1 ;
+				$Count = $Count + 1;
 			}
 			?>
 		</div>
-		</div>
-		<!-- ipage close -->
+		</div><!-- ipage close -->
 	<?php	
 	}
 }

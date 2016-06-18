@@ -4,9 +4,10 @@ require_once('include/require.php');
 $MackupCustomer = new MackupCustomer(); 
 $Mode = ReplaceEmpty("mode", "");
 
+//save makeup customer successfully
 if ($Mode == "save")
 {
-	//masseg on saved user
+	//massage on saved user
 	if ($MackupCustomer->Add())
 	{
 		SetMsg('<b><font color=red>הלקוח נשמר בהצלחה</b></font>',"success");            
@@ -42,29 +43,27 @@ Class MackupCustomer
 		$this->SkinType = ReplaceEmpty("skin", "");
 		$this->Mode = ReplaceEmpty("mode", "");	
 	}
-	//add user to data base
+	//add makeup customer to data-base
 	function Add()
-	{	
-		
-		$MPhoneNumber  = GetID("mcustomer","MCustomerID");//select max MCustomerID from mcustomer table means take the next inctimant idNumber for saving new customer 
-		$MemberID =  @$_SESSION['SAWMemberID'] ;//for only artist with MemberID=2 can add new customer to the databse
+	{
+		$MPhoneNumber  = GetID("mcustomer","MCustomerID");//select max MCustomerID from mcustomer table inctimant by 1 for saving new customer 
+		$MemberID = @$_SESSION['SAWMemberID'];//for only artist with MemberID=2 can add new customer to the databse
 		$date=date('Y-m-d');//data of setting customer to the databse
-			//save user on data base 
+		//save mcustomer on data base 
 		$SQL = "insert into mcustomer (date ,MCustomerID, MemberID,  FirstName, LastName,  PhoneNumber,  DOB, MakeupType, FacialStructure, SkinType ) values ('$date', $MPhoneNumber, '$MemberID', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->DOB', '$this->MakeupType', '$this->FacialStructure', '$this->SkinType')";
 		GetRS($SQL);	
 		return true;
 	}
-	
+	//form page
 	function PrintForm()
-	{
-	
+	{	
 	?>
     <div class="ipage makeupprofilepage">
         <!-- ipage start -->
         <div class="rowhead">
             <h2>לקוחות איפור</h2>
         </div>
-        <?php ShowMsg() ?> <!-- for sending mail when time cose -on page makup-costomers.php -->
+        <?php ShowMsg() ?> <!-- for sending mail according functionality  written on page makup-costomers.php -->
             <form action="makup-costomers.php" method="POST" enctype="multipart/form-data">
                 <div class="makeupprofilepage_intro">
                     <div class="makeupprofilepage_intro_coll">

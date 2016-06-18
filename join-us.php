@@ -4,13 +4,14 @@ require_once('include/require.php');
 $JoinUs = new JoinUs(); 
 $Mode = ReplaceEmpty("mode", "view");
 
+//if the registration was successful
 if ($Mode == "register")
 {
-	//masseg when user join the website
+	//registration made successfully
 	if ($JoinUs->Register())
 	{
 		SetMsg('<b><font color=red>ברוך הבא</b></font>',"success");  
-		header("Location: " . $Site->DocRoot . "makeup-artist-profile.php");	
+		header("Location: ".$Site->AURL."makeup-artist-profile.php");	
         exit();             
 	}
 	else 
@@ -26,16 +27,13 @@ PrintTopHeader();//tollbar of the page
 $JoinUs->PrintJoinUs();
 CloseBody();//close body
 
-//class responsable to registert users to the website
+//class responsible for registration of customer to the web-site
 Class JoinUs 
 {
-
 	function JoinUs()
 	{	
 		$this->Error = "";
-		$this->Heading = "Register your profile";		
 		$this->FirstName = ReplaceEmpty("firstname", "");
-		$this->UserType = ReplaceEmpty("usertype", "user");
 		$this->LastName = ReplaceEmpty("lastname", "");
 		$this->Email = ReplaceEmpty("email", "");
 		$this->Password = ReplaceEmpty("password", "");
@@ -53,12 +51,10 @@ Class JoinUs
 			$DateAdded = gmdate("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
 			$IsEnable = 1;
-			$pass=  base64_encode($this->Password);
+			$pass = base64_encode($this->Password);
 			$SQL = "insert into member (MemberID, ProfileType, FirstName, LastName,  TelNo, Email, Password, IsActive, IsEnable, DateAdded, DateUpdated) values ($MemberID, 'user', '$this->FirstName', '$this->LastName', '$this->PhoneNumber', '$this->Email', '$pass', '1' , '$IsEnable', '$DateAdded', '$DateUpdated')";
 			GetRS($SQL);
-
-			$_SESSION['SAWMemberID'] = $MemberID ;//cookie-To not allow impersonation of another user PHP gives each customer ID
-			
+			$_SESSION['SAWMemberID'] = $MemberID;//cookie- to not allow impersonation of another user PHP gives each customer ID
 			return true;
 		}
 		else
@@ -66,7 +62,7 @@ Class JoinUs
 			return false;
 		}		
 	}
-	//function for check user details
+	//check if the user valid and there is no error
 	function IsValid()
 	{
         $this->Error = "";
@@ -117,7 +113,7 @@ Class JoinUs
         $this->Error = $error;
         return $Valid;
     }
-	
+	//page form
 	function PrintJoinUs()
 	{
 		global $Site;
@@ -126,7 +122,6 @@ Class JoinUs
     	<div class="rowhead">
         	<h2>הצטרף עכשיו</h2>
         </div>
-		<?php echo ShowMsg() ?>
 		<form action="join-us.php" method="post" id="frmRegister" >
 			<div class="joinpage_intro">
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->

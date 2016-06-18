@@ -1,5 +1,5 @@
 <?php
-// Check that the class DB not exists before trying to use it
+// Check that the class DB exists before use it
 
 if (!(class_exists('DB')))
 {

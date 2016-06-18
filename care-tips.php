@@ -11,7 +11,7 @@ if ($Mode == "addtips")
 	//add tip successfully
 	if ($CareTips->Add())
 	{
-		SetMsg("$CareTips->ObjName הטיפ נוסף בהצלחה","success");            
+		SetMsg("<b><font color=red>$CareTips->ObjName הטיפ נוסף בהצלחה</font></b>","success");            
         header("Location: ".$Site->AURL."care-tips.php");
         exit();             
 	}
@@ -25,7 +25,7 @@ if($Mode=="removed")
 {	
 	//remove tip successfully
 	$CareTips->Remove($CareTipsID);
-	SetMsg("$MakupGallery->ObjName הטיפ הוסר בהצלחה","success");            
+	SetMsg("<b><font color=red>$CareTips->ObjName הטיפ הוסר בהצלחה</font></b>","success");    
 	header("Location: ".$Site->AURL."care-tips.php");
 	exit(); 
 }
@@ -37,25 +37,23 @@ PrintTopHeader();//tollbar of the page
 $CareTips->PrintCareTips();
 CloseBody();//close body
 
-//class for adding care tips by artist
+//class that adds care tips by artist
 Class CareTips {
 	
 	function CareTips(){}
 	
 	function Add()
 	{
-		global $Site  ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//check if the detalies is right
+		global $Site;
+		$SAWMemberID  = @$_SESSION['SAWMemberID'];
+		//check if the details is right
 		if ($this->IsValid())
 		{			
 			$TipsID = GetID("tips","TipsID");
 			$DateAdded = date("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
-			$TipsID = GetID("tips", "TipsID");  
 			$Desc = ReplaceEmpty("desc","");	
-			//inset tip to data base
+			//inset tip to data-base
 			$SQL = "insert into tips (TipsID , `Desc`, TipsType , MemberID , DateAdded) values ($TipsID , '$Desc' , '3' , '$SAWMemberID' , '$DateAdded')";
 			GetRS($SQL);	
 			return true;
@@ -68,12 +66,13 @@ Class CareTips {
 	//delete tips 
 	function Remove($TipsID = 0)
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
+		//delete tips from data base
 		$SQL = "delete from tips where TipsID = $TipsID and TipsType = 3 and MemberID = $SAWMemberID";
 		GetRs($SQL);
 		return true;	
 	}
-	
+	//check if the user valid and there is no error
 	function IsValid()
 	{
 		$this->Error = "";
@@ -82,23 +81,23 @@ Class CareTips {
 		$this->Error = $error;
 		return $Valid;
 	}
-	
+	//page form
 	function PrintCareTips()
 	{
-		$SAWMemberID  = @$_SESSION['SAWMemberID'] ;
-		//global $Site ;
+		$SAWMemberID = @$_SESSION['SAWMemberID'];
 		?>
 		<div class="ipage makeuptips"><!-- ipage start -->
 			<div class="rowhead">
 				<h2>עולם הטיפוח</h2>
-			</div>		
-			<div class="makeuptips_intro">
+			</div>
+			<?php echo ShowMsg() ?>
 			<?php
-			$SAWProfileType = @$_SESSION['SAWProfileType'] ;
+			$SAWProfileType = @$_SESSION['SAWProfileType'];
 			if($SAWProfileType != 'user')
 			{ ?>
 				<?php if (isset($_SESSION['SAWMemberID'])) 
 				{  ?>
+					<div class="makeuptips_intro">
 					<div class="makeuptips_intro_row">
 						<!-- makeuptips_intro_row start -->
 						<h2>הוספת טיפ</h2>
@@ -112,10 +111,10 @@ Class CareTips {
 				   <?php
 				}
 			}
-			//TipsType = '1' means care tips
+			//TipsType = '3' means care tips
 			$SQL = "select * from  tips where TipsType = '3'";
-			$rs = GetRs($SQL) ;
-			$Count = 1 ;
+			$rs = GetRs($SQL);
+			$Count = 1;
 			while($rw = mysql_fetch_array($rs))
 			{
 				?>
@@ -137,8 +136,7 @@ Class CareTips {
 			}
 			?>
 		</div>
-		</div>
-		<!-- ipage close -->
+		</div><!-- ipage close -->
 	<?php	
 	}
 }

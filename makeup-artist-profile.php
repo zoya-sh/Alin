@@ -10,26 +10,26 @@ PrintTopHeader();//tollbar of the page
 $Profile->PrintProfile();//profile page
 CloseBody();//close body
 
-//class that present a user of the website- artist or other user
+//class presents artist or user Profile on website
 Class Profile 
 {
-
 	function Profile(){}
-	
+	//Profile user on web
 	function PrintProfile()
 	{
-		global $SAWMemberID ;
-		global $SAWProfileType ;
-		global $Site ;
+		global $SAWMemberID;
+		global $SAWProfileType;
+		global $Site;
 		?>
 		<div class="ipage artistprofile"><!-- ipage start -->
 			<div class="rowhead">
 				<!-- if user name is the same as a session we will show user profile -->
-				<?php if($_SESSION['SAWProfileType'] == 'user'){ ?>
+				<?php if($_SESSION['SAWProfileType'] == 'user'){ 
+					?>
 					<h2>פרופיל לקוח</h2>
 					<?php
 				}
-				else//alse will show makeup artist profile
+				else//else will show makeup artist profile
 				{
 					?>
 					<h2>פרופיל אמנית האיפור</h2>
@@ -37,12 +37,13 @@ Class Profile
 				}
 				?>
 			</div>
+			<?php echo ShowMsg() ?>
 			<?php
 			$SQL ="select * from member where MemberID = $SAWMemberID";//get the line with the user details  where user MemberID
-			//get the line with the user details
-			$rs = GetRs($SQL);// @mysql_query($SQL,$db->cnn) or die(mysql_error());
+			$rs = GetRs($SQL);
 			if($rw = mysql_fetch_array($rs))//make array for user details
 			{
+				//print profile page
 				?>	
 				<div class="artistprofile_intro">
 					<div class="videopage_intro_coll"><!-- videopage_intro_coll start -->
@@ -55,24 +56,23 @@ Class Profile
 							</div>
 						</div>
 						<?php 
-						// user profile 
+						// if user profile show coupons by munber of treatment
 						if($_SESSION['SAWProfileType'] == 'user')
 						{
 							$y10 = 10;
 							$y5 = 5;
-							if($rw['Treatment'] <5)
+							if($rw['Treatment'] < 5)//under 5 treatment no benefits
 							{
 							?>
 			
 							<?php
 							}
-							elseif($rw['Treatment'] > 4)
-							{
-								
-								$result10 = fmod($rw['Treatment'],$y10);
-								$result5 = fmod($rw['Treatment'],$y5);
+							elseif($rw['Treatment'] > 4)//5 treatments and more
+							{	
+								$result10 = fmod($rw['Treatment'],$y10);//free treatment benefits
+								$result5 = fmod($rw['Treatment'],$y5);//ten percent discount benefits
 								if($result10==0 || $result5==0)
-								{
+								{	//ten percent discount benefits
 									if($result10!=0 && $result5==0)
 									{
 											?>
@@ -86,6 +86,7 @@ Class Profile
 										</div>		
 										<?php
 									}
+									//free treatment benefits
 									if($result10==0 && $result5==0)
 									{
 										?>
@@ -101,47 +102,6 @@ Class Profile
 									}
 								}
 							}
-							
-							/*
-							$y = 10;
-							$result = fmod($rw['Treatment'],$y);
-							if($rw['Treatment'] <5)
-							{
-							?>
-			
-							<?php
-							}
-							elseif($rw['Treatment'] > 4)
-							{
-								//user treatment between more then 10
-								if($result >-1 and $result <5)
-								{
-								?>
-								<div class="videopage_intro_coll_bottom">
-									<div class="videopage_intro_coll_bottom_row">
-										<a href="<?php echo $Site->ThemePath ?>images/treatment10.png" target="_new" class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
-									</div>
-									<div class="videopage_intro_coll_bottom_row">
-										<img src="<?php echo $Site->ThemePath ?>images/treatment10.png" alt="" />
-									</div>	
-								</div>		
-								<?php	
-								}
-								//user treatment between more then 5 
-								elseif($result > 4 and $result <10)
-								{
-									?>
-									<div class="videopage_intro_coll_bottom">
-										<div class="videopage_intro_coll_bottom_row">
-											<a href="<?php echo $Site->ThemePath ?>images/treatment5.png"  target="_new"  class="videopage_intro_coll_top_row_btn videopage_intro_coll_top_row_btn3">הדפס</a>
-										</div>
-										<div class="videopage_intro_coll_bottom_row">
-											<img src="<?php echo $Site->ThemePath ?>images/treatment5.png" alt="" />
-										</div>	
-									</div>		
-									<?php
-								}
-							}*/	
 						}
 							?>
 						</div><!-- user profile - name, phone number email and number of treatment// -->
@@ -158,7 +118,7 @@ Class Profile
 			
 						</div><!-- videopage_intro_colr close// -->
 						<?php 
-						//if it's artist profile, will show 2 link to different pages:makeup customers, nails customers
+						//if it's artist profile, will show 2 link to different pages: makeup customers, nails customers
 						}
 						elseif($_SESSION['SAWProfileType'] == 'artist')
 						{
@@ -178,13 +138,13 @@ Class Profile
 				</div>
 				<?php
 		}
-		else
+		else//User does not exist
 		{	
 			echo '<b><font color=red>משתמש לא קיים</b></font>';
 		}
 		?>
 		</div><!-- ipage close// -->		
-		<?php	
+	<?php	
 	}
 }
 ?>
