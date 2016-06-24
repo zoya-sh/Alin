@@ -122,6 +122,7 @@ Class JoinUs
     	<div class="rowhead">
         	<h2>הצטרף עכשיו</h2>
         </div>
+		<?php showmsg() ?> 
 		<form action="join-us.php" method="post" id="frmRegister" >
 			<div class="joinpage_intro">
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->

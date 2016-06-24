@@ -27,7 +27,7 @@
 		//search for the string  date , find the value "-" and then replace the value with "/"
 		$date1 = str_replace('-', '/', $date);
 		//calculation of relative dates base on duration that pass depends on makeup type(week, month....)
-		$finaldate = date('Y-m-d',strtotime($date1 .$row1['duration']));	
+		$finaldate = date('Y-m-d',strtotime($date1 .$row1['duration']));//date1+duration
 
 		//for birthday
 		$dt1 = DateTime::CreateFromFormat("Y-m-d", $row['DOB']);//Returns new DateTime object because DOB is a varchar

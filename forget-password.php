@@ -22,7 +22,7 @@ Class ForgetPassword
 		?>
 		<div class="ipage gallerypage"><!-- ipage start -->
 			<div class="rowhead">
-				<h2>שחכת סיסמא?</h2>
+				<h2>שכחת סיסמא?</h2>
 			<!--if mail sent, q will be true user will see massage "Password sent"-->
 			</div><?php if(isset($_REQUEST['q']) && $_REQUEST['q']==1)
 			{
@@ -38,7 +38,7 @@ Class ForgetPassword
 			<form action="mail/mail.php" method="POST" enctype="multipart/form-data">
 				<div class="">
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-						<label>הכנס מייל לשחזור</label>
+						<label>הכנס אימייל לשחזור</label>
 						<input type="email" name="email" class="custom_input" required/>
 					</div><!-- contactpage_intro_row close// -->
 					

@@ -65,7 +65,7 @@ function GetUploadFileName($arrayname, $Prefix = "", $Default = ""){
 }
 
 //upload file with name filename(file menas gallery photo) from 'profilepic-1 arr with max size 8388608
-function UploadFile($filename, $arrayname, $maxsize = 8388608){
+function UploadFile($filename, $arrayname, $maxsize = 314572800){
 	$uploadedfile = $_FILES[$arrayname]['tmp_name'];//Temporary file name on srver
 	$filesize = $_FILES[$arrayname]['size'];//Size of the file in bytes
 	$isremove = ReplaceEmpty("r" . $arrayname, 0);//only for artist

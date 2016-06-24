@@ -95,7 +95,7 @@ function PrintLoginForm(){
                 <!-- contactpage_intro_row close// -->
                 <div class="contactpage_intro_row">
                     <!-- contactpage_intro_row start -->
-                    <a href="forget-password.php"><span type="submit" value="" class="custom_btn">שלח סיסמא למייל</span></a>
+                    <a href="forget-password.php"><span type="submit" value="" class="custom_btn">שלח סיסמא לאימייל</span></a>
                     <input type="hidden" value="login" class="custom_btn" name="mode">
                 </div>
                 <!-- contactpage_intro_row close// -->

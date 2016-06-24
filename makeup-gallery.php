@@ -156,7 +156,7 @@ Class MakeupGallery
 				<li><span><a href="#" data-title="" data-desc="" data-src="<?php echo $rw['ImagePath'] ?>"> <img src="<?php echo $rw['ImagePath'] ?>" /> </a></span>
 				<?php if($SAWMemberID == $rw['MemberID'])
 				{ ?>
-					<a href="<?php echo $Site->AURL ?>makeup-gallery.php?mode=remove&id=<?php echo $rw['MGalleryID'] ?>"  >removed</a>
+					<a href="<?php echo $Site->AURL ?>makeup-gallery.php?mode=remove&id=<?php echo $rw['MGalleryID'] ?>"  >הסרה</a>
 				<?php
 				}
 				?>

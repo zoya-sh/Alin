@@ -18,7 +18,7 @@ require_once('mail/class.phpmailer.php');
 
 //set current session if the session is empty
 if (! isset($_SESSION['Currency'])){
-	$_SESSION['Currency'] = 1;//if current session not set..will set it to "!"
+	$_SESSION['Currency'] = 1;//if current session not set..will set it to "1"
 }
 else {//if Currency session is set..will set it to "!"
 	$Currency = ReplaceEmpty("currency", $_SESSION['Currency']);//if currency is empty will est the Currency session

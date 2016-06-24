@@ -67,7 +67,7 @@ class Site {
 			$this->AURL = trim($URL, "/") . $this->DocRoot;
 			// ADataDir-> url/alin-makeup/theme/
 			$this->ADataDir = $this->AURL . $this->DataDir;
-			// ThemePath-> url/alin-makeup/theme/makeupProject/assets/
+			// ThemePath-> url/alin-makeup/theme/makeupProject/
 			$this->ThemePath = $this->AURL . trim($ThemeDir, "/") . "/" . $this->Theme . "/";
 			// AssetPath->url/alin-makeup/theme/makeupProject/assets/
 			$this->AssetPath = $this->ThemePath . "assets/";
