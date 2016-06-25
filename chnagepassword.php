@@ -74,7 +74,7 @@ Class CPassword
 						<input type="password" name="newpassword" class="custom_input" required/>
 					</div><!-- contactpage_intro_row close// -->
 					<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-						<input type="submit" value="OK" class="custom_btn" />
+						<input type="submit" value="שמור" class="custom_btn" />
 						<input type="hidden" name="mode" value="chnagepassword" >
 					</div><!-- contactpage_intro_row close// -->
 				</div>

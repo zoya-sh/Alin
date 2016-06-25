@@ -64,13 +64,11 @@ class Site {
 			$this->Theme = "makeupProject";
 			$this->DataDir = $DataDir;// the dir in "theme/"(set on config file)
 			$this->DocRoot = $DocRoot;// the project basic dir "/alin-makeup/"(set on config file)
-			$this->AURL = trim($URL, "/") . $this->DocRoot;
+			$this->AURL = trim($URL, "/") . $this->DocRoot;//url/alinmakeup/
 			// ADataDir-> url/alin-makeup/theme/
 			$this->ADataDir = $this->AURL . $this->DataDir;
 			// ThemePath-> url/alin-makeup/theme/makeupProject/
 			$this->ThemePath = $this->AURL . trim($ThemeDir, "/") . "/" . $this->Theme . "/";
-			// AssetPath->url/alin-makeup/theme/makeupProject/assets/
-			$this->AssetPath = $this->ThemePath . "assets/";
 		}
 		else {//in case website not set
 			echo "<center>No website configured for this domain";

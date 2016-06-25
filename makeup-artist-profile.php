@@ -64,7 +64,11 @@ Class Profile
 							if($rw['Treatment'] < 5)//under 5 treatment no benefits
 							{
 							?>
-			
+								<div class="videopage_intro_coll_bottom">
+										<div class="videopage_intro_coll_bottom_row" >
+											<img src="<?php echo $Site->ThemePath ?>images/treatment0.png"/>
+										</div>	
+								</div>
 							<?php
 							}
 							elseif($rw['Treatment'] > 4)//5 treatments and more
@@ -113,7 +117,7 @@ Class Profile
 								<p><?php echo  $rw['Email'] ?></p>
 								</div>
 							<div class="videopage_intro_colr_row2">	
-								<p>טיפול מס:  <?php echo $rw['Treatment'] ?></p>
+								<p>טיפול מספר: <?php echo $rw['Treatment'] ?></p>
 							</div>
 			
 						</div><!-- videopage_intro_colr close// -->

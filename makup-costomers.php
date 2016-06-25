@@ -89,7 +89,7 @@ Class MackupCustomer
 
                         <div class="makeupprofilepage_intro_col_row">
                             <!-- makeupprofilepage_intro_col_row start -->
-                            <label>מס' טלפון:</label>
+                            <label>מספר טלפון:</label>
                             <input type="number" name="phonenumber" min="1" max="9999999999" class="custom_input" value="<?php echo $this->PhoneNumber ?>" required />
                         </div>
                         <!-- makeupprofilepage_intro_col_row close// -->
@@ -109,8 +109,8 @@ Class MackupCustomer
                                 <option value="Bride Makeup">איפור כלה</option>
                                 <option value="Makeup Alliance">איפור לברית/ה</option>
 								<option value="Makeup Bat Mitzvah">איפור לבת מצווה</option>
-                                <option value="Personal Tranning">סדנא אישית</option>
-                                <option value="Group Tranning">סנדא קבוצתית</option>
+                                <option value="Personal Tranning">סדנה אישית</option>
+                                <option value="Group Tranning">סדנה קבוצתית</option>
 								<option value="Evening activity">איפור ערב</option>
                                 <option value="Bridesmaids Party">מסיבת רווקות</option>
                             </select>

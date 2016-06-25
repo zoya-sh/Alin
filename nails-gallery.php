@@ -52,13 +52,10 @@ Class NailsGallery
             $MGalleryID = GetID("mgallery","MGalleryID");//id number of photo
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
-			$this->Image = "";
 			
 			/** Creating a path to upload photos **/
 			$PushPath = "";
 			$count = 0;
-			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for photo that we can upload
-			$max_file_size = 1024*100; //photo size
 			$path = "photo/nailsGallery/"; //path to save photos
 			
 			//our PHP file named "profilepic-1" automatically entered into a global super variable named $_FILES

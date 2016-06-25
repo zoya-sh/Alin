@@ -51,13 +51,10 @@ Class DoItByYourSlef
 			$VideoID = GetID("video", "VideoID");//id number of video
             $DateAdded = date("Y-m-d H:i:s");
             $DateUpdated = $DateAdded;
-			$this->Image = "";
-			
+
 			/** Creating a path to upload video **/
 			$PushPath = "" ;
 			$count = 0  ;
-			$valid_formats = array("jpg", "jpeg", "png", "gif", "zip", "bmp");//format for video that we can upload
-			$max_file_size = 1024*100; //video size
 			$path = "video/"; //path to save video
 			
 			//our PHP file named "profilepic-1" automatically entered into a global super variable named $_FILES

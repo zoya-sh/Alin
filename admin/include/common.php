@@ -148,14 +148,6 @@ function IsValidStr($Value, $MaxLength = 255){
 
 //returns all full url (include: server name + port+ serverrequri)
 function SelfURL(){
-	//SERVER['REQUEST_URI'] will hold the full request path including the querystring
-    if(!isset($_SERVER['REQUEST_URI'])){
-        $serverrequri = $_SERVER['PHP_SELF'];//Returns the filename of the currently executing script
-    }else{
-        $serverrequri =    $_SERVER['REQUEST_URI'];//give the url of website
-    }
-	
-	$serverrequri = "/CodeIgniter/";
 	$serverrequri = "/";
 	// if https=on return s , if https not empty return s otherwise ""
     $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";

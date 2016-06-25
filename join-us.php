@@ -138,7 +138,7 @@ Class JoinUs
 					<input type="email" name="email" class="custom_input" value="<?php echo $this->Email ?>">
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->
-					<label>מס' טלפון:</label>
+					<label>מספר טלפון:</label>
 					<input type="number" name="phonenumber" min="1" max="9999999999" class="custom_input" value="<?php echo $this->PhoneNumber ?>">
 				</div><!-- contactpage_intro_row close// -->
 				<div class="contactpage_intro_row"><!-- contactpage_intro_row start -->

@@ -49,7 +49,7 @@ Class NailsCustomer
 							<input type="hidden" name="memberid" value="<?php echo $rw['MemberID'] ?>">
 							<?php
 				echo '<b><font color=#8B2252 size=4>שם פרטי = </b></font>' ; echo '<b><font color=#8B2252 size=4>'.$rw['FirstName'].'</b></font>' ; echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-				echo '<b><font color=#8B2252 size=4>טיפול מס = </b></font>' ; echo '<b><font color=#8B2252 size=4>'.$rw['Treatment'].'</b></font>'  ;echo "&nbsp;&nbsp;&nbsp;&nbsp;";
+				echo '<b><font color=#8B2252 size=4>מספר טיפול = </b></font>' ; echo '<b><font color=#8B2252 size=4>'.$rw['Treatment'].'</b></font>'  ;echo "&nbsp;&nbsp;&nbsp;&nbsp;";
 				?>
 						</div>
 					</center>
@@ -90,7 +90,7 @@ Class NailsCustomer
 
                       <div class="makeupprofilepage_intro_col_row">
                           <!-- makeupprofilepage_intro_col_row start -->
-                          <label>מס' טלפון:</label>
+                          <label>מספר טלפון:</label>
                           <input type="number" min="1" max="9999999999" name="phonenumber" class="custom_input" value="<?php echo $this->PhoneNumber ?>" required>
                       </div>
                       <!-- makeupprofilepage_intro_col_row close// -->
