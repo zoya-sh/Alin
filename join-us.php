@@ -48,7 +48,7 @@ Class JoinUs
 		if ($this->IsValid())
 		{
 			$MemberID = GetID("member", "MemberID");//getting last MemberID +1 for adding one more user
-			$DateAdded = gmdate("Y-m-d H:i:s");
+			$DateAdded = date("Y-m-d H:i:s");
 			$DateUpdated = $DateAdded;
 			$IsEnable = 1;
 			$pass = base64_encode($this->Password);

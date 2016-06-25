@@ -84,7 +84,6 @@ Class MakeupGallery
 			if(!empty($_FILES['profilepic-1']['name']))
 			{	
 				$MGalleryID = GetID("mgallery", "MGalleryID");  
-				$DateAdded = ""	;
 				$SQL = "insert into mgallery (MGalleryID, ImagePath, MemberID , DateAdded) values ($MGalleryID, '$PushPath', '$SAWMemberID', '$DateAdded')";
 				GetRS($SQL);	
 			}		

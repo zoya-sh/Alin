@@ -83,7 +83,6 @@ Class DoItByYourSlef
 			if(!empty($_FILES['profilepic-1']['name']))
 			{		
 				$VideoID = GetID("video", "VideoID");  
-				$DateAdded = ""	;
 				$SQL = "insert into video (VideoID, Path, MemberID , Type , DateAdded) values ($VideoID, '$PushPath', '$SAWMemberID', '2', '$DateAdded')";
 				GetRS($SQL);	
 			}
